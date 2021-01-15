@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="head.additional">
+            <block class="Web200\Seo\Block\SiteVerification" name="seo.site.verification" template="Web200_Seo::default.phtml" ifconfig="seo/verifications/active"/>
+            <block class="Web200\Seo\Block\TwitterCard" name="seo.twitter.card" template="Web200_Seo::default.phtml" ifconfig="seo/twitter_card/active"/>
+            <block class="Web200\Seo\Block\OpenGraph" name="seo.open.graph" template="Web200_Seo::default.phtml"/>
+            <block class="Web200\Seo\Block\HrefLang" name="seo.href.lang" template="Web200_Seo::hreflang.phtml" ifconfig="seo/hreflang/active"/>
+        </referenceContainer>
+        <referenceBlock name="before.body.end">
+            <block class="Web200\Seo\Block\MicroData\Breadcrumbs" name="micro_data_breadcrumbs"
+                   template="Web200_Seo::micro_data.phtml" />
+            <block class="Web200\Seo\Block\MicroData\SitelinksSearchbox" name="micro_data_sitelinks_searchbox"
+                   template="Web200_Seo::micro_data.phtml" />
+            <block class="Web200\Seo\Block\MicroData\Organization" name="micro_data_organization"
+                   template="Web200_Seo::micro_data.phtml" />
+        </referenceBlock>
+    </body>
+</page>

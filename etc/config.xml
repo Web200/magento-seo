@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <seo>
+            <twitter_card>
+                <type>summary</type>
+            </twitter_card>
+            <robots>
+                <content>
+User-agent: *
+Disallow: /index.php/
+Disallow: /*?
+Disallow: /checkout/
+Disallow: /app/
+Disallow: /lib/
+Disallow: /*.php$
+Disallow: /pkginfo/
+Disallow: /report/
+Disallow: /var/
+Disallow: /catalog/
+Disallow: /customer/
+Disallow: /sendfriend/
+Disallow: /review/
+Disallow: /errors/
+Disallow: /*SID=
+                </content>
+            </robots>
+            <hreflang>
+                <same_website_only>0</same_website_only>
+            </hreflang>
+        </seo>
+    </default>
+</config>

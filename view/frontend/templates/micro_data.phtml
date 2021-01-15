@@ -1,0 +1,13 @@
+<?php
+
+declare(strict_types=1);
+
+use Web200\Seo\Block\MicroData\Breadcrumbs;
+use Web200\Seo\Block\MicroData\SitelinksSearchbox;
+use Web200\Seo\Block\MicroData\Organization;
+
+?>
+<?php /** @var Breadcrumbs|SitelinksSearchbox|Organization $block */?>
+<?php if ($block->display()) : ?>
+    <script type="application/ld+json"><?= $block->renderJson() ?></script>
+<?php endif ?>

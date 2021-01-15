@@ -1,0 +1,13 @@
+{
+  "name": "web200/magento-seo",
+  "description": "Magento 2 Seo Module",
+  "type": "magento2-module",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Web200\\Seo\\": ""
+    }
+  }
+}

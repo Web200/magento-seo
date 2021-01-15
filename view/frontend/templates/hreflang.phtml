@@ -1,0 +1,13 @@
+<?php
+
+use Web200\Seo\Block\HrefLang;
+
+?>
+<?php /** @var HrefLang $block */ ?>
+<?php /** @var HrefLang $alternatives */ ?>
+<?php $alternatives = $block->getAlternates(); ?>
+<?php if ($alternatives): ?>
+    <?php foreach ($alternatives as $hrefLang => $url): ?>
+        <link rel="alternate" hreflang="<?= $block->escapeHtml($hrefLang) ?>" href="<?= $block->escapeHtml($url) ?>" />
+    <?php endforeach; ?>
+<?php endif ?>

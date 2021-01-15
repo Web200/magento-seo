@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Web200\Seo\Api\CmsPageUrlRetrieverInterface" type="Web200\Seo\Service\HrefLang\CmsPageUrlRetriever" />
+    <preference for="Web200\Seo\Api\CategoryUrlRetrieverInterface" type="Web200\Seo\Service\HrefLang\CategoryUrlRetriever" />
+    <preference for="Web200\Seo\Api\ProductUrlRetrieverInterface" type="Web200\Seo\Service\HrefLang\ProductUrlRetriever" />
+    <type name="Magento\Framework\View\Page\Config">
+        <plugin name="w200_seo_page_config" type="Web200\Seo\Plugin\PageConfigPlugin" />
+    </type>
+    <type name="Magento\Framework\App\Route\Config">
+        <plugin name="w200_seo_route_config" type="Web200\Seo\Plugin\RouteConfigPlugin" />
+    </type>
+</config>

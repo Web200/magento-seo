@@ -1,0 +1,13 @@
+<?php
+
+declare(strict_types=1);
+
+use Web200\Seo\Block\SiteVerification;
+use Web200\Seo\Block\TwitterCard;
+use Web200\Seo\Block\OpenGraph;
+use Web200\Seo\Block\HrefLang;
+
+?>
+<?php /** @var SiteVerification|TwitterCard|OpenGraph|HrefLang $block */?>
+
+<?= $block->getMetaData() ?>

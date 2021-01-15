@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Web200\Seo\Api\Data\PropertyInterface" type="Web200\Seo\Model\Property" />
+    <preference for="Web200\Seo\Api\Data\AdapterInterface" type="Web200\Seo\Model\Adapter" />
+    <type name="Web200\Seo\Model\Adapter">
+        <arguments>
+            <argument name="adapters" xsi:type="array">
+                <item name="product_entity_container" xsi:type="object">\Web200\Seo\Model\Adapter\Product</item>
+                <item name="category_entity_container" xsi:type="object">\Web200\Seo\Model\Adapter\Category</item>
+                <item name="page_entity_container" xsi:type="object">\Web200\Seo\Model\Adapter\Page</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Remove schema Offer -->
+    <type name="Magento\Framework\Pricing\Render\PriceBox">
+        <plugin sortOrder="1" name="web200_seo_remove_schema_offer" type="Web200\Seo\Plugin\RemoveSchemaOffer"/>
+    </type>
+</config>
