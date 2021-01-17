@@ -3,6 +3,8 @@
     <body>
         <attribute name="itemtype" value="" />
         <attribute name="itemscope" value="" />
+        <referenceBlock class="Web200\Seo\Block\Catalog\Product\Breadcrumbs" name="breadcrumbs" template="Magento_Theme::html/breadcrumbs.phtml"/>
+
         <referenceBlock name="before.body.end">
             <block class="Web200\Seo\Block\MicroData\Product" name="micro_data_product" template="Web200_Seo::micro_data.phtml" />
         </referenceBlock>
