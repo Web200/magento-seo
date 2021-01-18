@@ -9,4 +9,16 @@
     <type name="Magento\Framework\App\Route\Config">
         <plugin name="w200_seo_route_config" type="Web200\Seo\Plugin\RouteConfigPlugin" />
     </type>
+    <!-- Add sitemap route -->
+    <type name="Magento\Framework\App\RouterList">
+        <arguments>
+            <argument name="routerList" xsi:type="array">
+                <item name="html_sitemap" xsi:type="array">
+                    <item name="class" xsi:type="string">Web200\Seo\Controller\Sitemap\Router</item>
+                    <item name="disable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="string">60</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
 </config>

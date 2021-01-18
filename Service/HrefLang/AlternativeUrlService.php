@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Web200\Seo\Service\HrefLang;
 
 use Magento\Framework\App\Request\Http as HttpRequest;
@@ -8,42 +10,70 @@ use Web200\Seo\Api\CategoryUrlRetrieverInterface;
 use Web200\Seo\Api\CmsPageUrlRetrieverInterface;
 use Web200\Seo\Api\ProductUrlRetrieverInterface;
 
+/**
+ * Class AlternativeUrlService
+ *
+ * @package   Web200\Seo\Service\HrefLang
+ * @author    Web200 <contact@web200.fr>
+ * @copyright 2021 Web200
+ * @license   https://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link      https://www.web200.fr/
+ */
 class AlternativeUrlService
 {
     /**
-     * @var CmsPageUrlRetrieverInterface
+     * Cms page url retriver interface
+     *
+     * @var CmsPageUrlRetrieverInterface $cmsPageUrlRetriever
      */
-    private $cmsPageUrlRetriever;
+    protected $cmsPageUrlRetriever;
     /**
-     * @var CategoryUrlRetrieverInterface
+     * Category url retriver interface
+     *
+     * @var CategoryUrlRetrieverInterface $categoryUrlRetriever
      */
-    private $categoryUrlRetriever;
+    protected $categoryUrlRetriever;
     /**
-     * @var ProductUrlRetrieverInterface
+     * Product url retriver interface
+     *
+     * @var ProductUrlRetrieverInterface $productUrlRetriever
      */
-    private $productUrlRetriever;
+    protected $productUrlRetriever;
     /**
-     * @var HttpRequest
+     * Http request
+     *
+     * @var HttpRequest $request
      */
-    private $request;
+    protected $request;
 
+    /**
+     * AlternativeUrlService constructor.
+     *
+     * @param CmsPageUrlRetrieverInterface  $cmsPageUrlRetriever
+     * @param CategoryUrlRetrieverInterface $categoryUrlRetriever
+     * @param ProductUrlRetrieverInterface  $productUrlRetriever
+     * @param HttpRequest                   $request
+     */
     public function __construct(
         CmsPageUrlRetrieverInterface $cmsPageUrlRetriever,
         CategoryUrlRetrieverInterface $categoryUrlRetriever,
         ProductUrlRetrieverInterface $productUrlRetriever,
         HttpRequest $request
     ) {
-        $this->cmsPageUrlRetriever = $cmsPageUrlRetriever;
+        $this->cmsPageUrlRetriever  = $cmsPageUrlRetriever;
         $this->categoryUrlRetriever = $categoryUrlRetriever;
-        $this->productUrlRetriever = $productUrlRetriever;
-        $this->request = $request;
+        $this->productUrlRetriever  = $productUrlRetriever;
+        $this->request              = $request;
     }
 
     /**
+     * Get alternative url
+     *
      * @param Store $store
+     *
      * @return string
      */
-    public function getAlternativeUrl($store)
+    public function getAlternativeUrl($store): string
     {
         switch ($this->request->getFullActionName()) {
             case 'catalog_category_view':
@@ -55,6 +85,7 @@ class AlternativeUrlService
             case 'cms_index_index':
                 return $store->getBaseUrl();
         }
+
         return '';
     }
 }

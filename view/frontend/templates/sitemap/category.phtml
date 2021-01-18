@@ -1,0 +1,41 @@
+<?php
+
+declare(strict_types=1);
+
+use Magento\Catalog\Helper\Category as CategoryHelper;
+use Magento\Framework\Data\Tree\Node;
+use Magento\Framework\Data\Tree\Node\Collection as TreeNodeCollection;
+use Web200\Seo\Block\Sitemap;
+
+?>
+<?php /** @var Sitemap $block */?>
+<?php /** @var TreeNodeCollection|Collection|mixed[] $categories */?>
+<?php $categories = $block->getStoreCategories() ?>
+<?php /** @var CategoryHelper $categoryHelper */?>
+<?php $categoryHelper = $block->getCategoryHelper() ?>
+<div class="sitemap-container col-xs-12">
+    <ul class="sitemap-items">
+        <?php /** @var int $index */?>
+        <?php /** @var Node $categoryHelper */?>
+        <?php foreach ($categories as $index => $category) : ?>
+            <li class="sitemap-item level-<?= $category->getLevel() ?>">
+                <a href="<?= $categoryHelper->getCategoryUrl($category) ?>">
+                    <span><?= $category->getName() ?></span>
+                </a>
+                <?php /** @var TreeNodeCollection $childrenCategories */?>
+                <?php if ($childrenCategories = $block->getChildCategories($category)) : ?>
+                    <ul>
+                        <?php /** @var Node $childCategory */?>
+                        <?php foreach ($childrenCategories as $childCategory) : ?>
+                            <li class="sitemap-item level-<?= $childCategory->getLevel() ?>">
+                                <a href="<?= $categoryHelper->getCategoryUrl($childCategory); ?>">
+                                    <span><?= $childCategory->getName() ?></span>
+                                </a>
+                            </li>
+                        <?php endforeach ?>
+                    </ul>
+                <?php endif ?>
+            </li>
+        <?php endforeach ?>
+    </ul>
+</div>
