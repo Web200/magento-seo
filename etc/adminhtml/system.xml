@@ -104,6 +104,20 @@
                     </field>
                 </group>
             </group>
+            <group id="microdata" translate="label,comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Microdata</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Active</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="brand" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="20" translate="label" type="select">
+                    <label>Brand Attribute</label>
+                    <source_model>Web200\Seo\Model\Config\Source\SelectAttributes</source_model>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                </field>
+            </group>
         </section>
     </system>
 </config>

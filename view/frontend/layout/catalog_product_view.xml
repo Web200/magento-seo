@@ -6,7 +6,7 @@
         <referenceBlock class="Web200\Seo\Block\Catalog\Product\Breadcrumbs" name="breadcrumbs" template="Magento_Theme::html/breadcrumbs.phtml"/>
 
         <referenceBlock name="before.body.end">
-            <block class="Web200\Seo\Block\MicroData\Product" name="micro_data_product" template="Web200_Seo::microdata/default.phtml" />
+            <block class="Web200\Seo\Block\MicroData\Product" name="micro_data_product" ifconfig="seo/microdata/active" template="Web200_Seo::microdata/default.phtml" />
         </referenceBlock>
     </body>
 </page>

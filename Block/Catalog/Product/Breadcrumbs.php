@@ -155,7 +155,12 @@ class Breadcrumbs extends BaseBreadcrumbs
     {
         if (!$this->product) {
             try {
-                $this->product = $this->productRepository->getById($this->_request->getParam('id'));
+                /** @var int $category */
+                $productId = (int)$this->_request->getParam('product_id');
+                if ($productId === 0) {
+                    $productId = (int)$this->_request->getParam('id');
+                }
+                $this->product = $this->productRepository->getById($productId);
             } catch (NoSuchEntityException $noSuchEntityException) {
             }
         }

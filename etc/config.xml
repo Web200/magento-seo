@@ -13,6 +13,9 @@
                     <url_key>sitemap/category</url_key>
                 </category>
             </html_sitemap>
+            <microdata>
+                <active>1</active>
+            </microdata>
         </seo>
     </default>
 </config>

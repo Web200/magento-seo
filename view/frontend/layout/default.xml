@@ -8,11 +8,11 @@
             <block class="Web200\Seo\Block\HrefLang" name="seo.href.lang" template="Web200_Seo::hreflang/default.phtml" ifconfig="seo/hreflang/active"/>
         </referenceContainer>
         <referenceBlock name="before.body.end">
-            <block class="Web200\Seo\Block\MicroData\Breadcrumbs" name="micro_data_breadcrumbs"
+            <block class="Web200\Seo\Block\MicroData\Breadcrumbs" name="micro_data_breadcrumbs" ifconfig="seo/microdata/active"
                    template="Web200_Seo::microdata/default.phtml" />
-            <block class="Web200\Seo\Block\MicroData\SitelinksSearchbox" name="micro_data_sitelinks_searchbox"
+            <block class="Web200\Seo\Block\MicroData\SitelinksSearchbox" name="micro_data_sitelinks_searchbox" ifconfig="seo/microdata/active"
                    template="Web200_Seo::microdata/default.phtml" />
-            <block class="Web200\Seo\Block\MicroData\Organization" name="micro_data_organization"
+            <block class="Web200\Seo\Block\MicroData\Organization" name="micro_data_organization" ifconfig="seo/microdata/active"
                    template="Web200_Seo::microdata/default.phtml" />
         </referenceBlock>
     </body>

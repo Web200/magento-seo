@@ -9,6 +9,7 @@ use Datetime;
 use Magento\Catalog\Block\Product\ReviewRendererInterface;
 use Magento\Catalog\Helper\Image;
 use Magento\Catalog\Model\Product as ModelProduct;
+use Magento\Catalog\Model\ResourceModel\Eav\Attribute;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Registry;
@@ -18,6 +19,7 @@ use Magento\Framework\View\Element\Template\Context;
 use Magento\Review\Model\Review\Summary;
 use Magento\Review\Model\Review\SummaryFactory;
 use Magento\Store\Model\StoreManagerInterface;
+use Web200\Seo\Provider\MicrodataConfig;
 
 /**
  * Class Product
@@ -66,10 +68,17 @@ class Product extends Template
      * @var SummaryFactory $reviewSummaryFactory
      */
     protected $reviewSummaryFactory;
+    /**
+     * Config
+     *
+     * @var MicrodataConfig $config
+     */
+    protected $config;
 
     /**
      * Product constructor.
      *
+     * @param MicrodataConfig         $config
      * @param StoreManagerInterface   $storeManager
      * @param Json                    $serialize
      * @param Registry                $registry
@@ -80,6 +89,7 @@ class Product extends Template
      * @param mixed[]                 $data
      */
     public function __construct(
+        MicrodataConfig $config,
         StoreManagerInterface $storeManager,
         Json $serialize,
         Registry $registry,
@@ -97,6 +107,7 @@ class Product extends Template
         $this->image                = $image;
         $this->reviewRenderer       = $reviewRenderer;
         $this->reviewSummaryFactory = $reviewSummaryFactory;
+        $this->config = $config;
     }
 
     /**
@@ -156,8 +167,18 @@ class Product extends Template
                     $offer
                 ]
             ];
-            if ($product->getData('manufacturer') !== '') {
-                $final['brand'] = $product->getResource()->getAttribute('manufacturer')->getFrontend()->getValue($product);
+
+            /** @var string $brand */
+            $brand = $this->config->getBrand();
+            if ($brand !== '') {
+                /** @var Attribute $brandAttribute */
+                $brandAttribute = $product->getResource()->getAttribute($brand);
+                if ($brandAttribute) {
+                    $brandValue = $brandAttribute->getFrontend()->getValue($product);
+                    if ($brandValue !== false) {
+                        $final['brand'] = $brandValue;
+                    }
+                }
             }
 
             /** @var Summary $reviewSummary */
