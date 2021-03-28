@@ -15,5 +15,6 @@ $ composer require "web200/magento-seo"
 * Add [Twitter Card](https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started)
 * Add [Hreflang tag](https://developers.google.com/search/docs/advanced/crawling/localized-versions) for Category / Product / Page / HomePage
 * Add Html sitemap for Category
+* Add canonical on category pagination tag : canonical / rel="prev" / rel="next"
 
 You can enable or disable all options on _Store > Configuration > General > Search Engine Optimization_

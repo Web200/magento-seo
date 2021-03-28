@@ -21,4 +21,8 @@
             </argument>
         </arguments>
     </type>
+    <!-- Add category seo canonical rel[prev/next] -->
+    <type name="Magento\Catalog\Controller\Category\View">
+        <plugin name="web200_seo_add_category_canonical" type="Web200\Seo\Plugin\AddCategoryCanonical"/>
+    </type>
 </config>
