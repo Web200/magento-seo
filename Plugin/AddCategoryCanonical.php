@@ -12,6 +12,7 @@ use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Page\Config as PageConfig;
 use Magento\Framework\View\Result\Page;
 use Magento\Theme\Block\Html\Pager;
+use Web200\Seo\Provider\CategoriesConfig;
 
 /**
  * Class AddCategoryCanonical
@@ -42,15 +43,23 @@ class AddCategoryCanonical
      * @var CategoryHelper $categoryHelper
      */
     protected $categoryHelper;
+    /**
+     * Categories config
+     *
+     * @var CategoriesConfig $categoriesConfig
+     */
+    protected $categoriesConfig;
 
     /**
      * AddCanonicalToCategories constructor.
      *
-     * @param CategoryHelper $categoryHelper
-     * @param PageConfig     $pageConfig
-     * @param UrlInterface   $urlBuilder
+     * @param CategoriesConfig $categoriesConfig
+     * @param CategoryHelper   $categoryHelper
+     * @param PageConfig       $pageConfig
+     * @param UrlInterface     $urlBuilder
      */
     public function __construct(
+        CategoriesConfig $categoriesConfig,
         CategoryHelper $categoryHelper,
         PageConfig $pageConfig,
         UrlInterface $urlBuilder
@@ -58,6 +67,7 @@ class AddCategoryCanonical
         $this->pageConfig     = $pageConfig;
         $this->urlBuilder     = $urlBuilder;
         $this->categoryHelper = $categoryHelper;
+        $this->categoriesConfig = $categoriesConfig;
     }
 
     /**
@@ -70,6 +80,10 @@ class AddCategoryCanonical
      */
     public function afterExecute(View $subject, $page)
     {
+        if (!$this->categoriesConfig->isRelPagination()) {
+            return $page;
+        }
+
         /** @var ListProduct $productListBlock */
         $productListBlock = $page->getLayout()->getBlock('category.products.list');
 
