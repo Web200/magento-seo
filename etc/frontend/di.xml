@@ -25,4 +25,12 @@
     <type name="Magento\Catalog\Controller\Category\View">
         <plugin name="web200_seo_add_category_canonical" type="Web200\Seo\Plugin\AddCategoryCanonical"/>
     </type>
+    <type name="Magento\Cms\Controller\Page\View">
+        <plugin name="web200_seo_add_cms_canonical"
+                type="Web200\Seo\Plugin\AddCmsCanonical"/>
+    </type>
+    <type name="Magento\Cms\Controller\Index\Index">
+        <plugin name="web200_seo_add_cms_index_canonical"
+                type="Web200\Seo\Plugin\AddCmsCanonical"/>
+    </type>
 </config>

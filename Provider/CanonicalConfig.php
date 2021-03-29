@@ -8,7 +8,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
 /**
- * Class CategoriesConfig
+ * Class CanonicalConfig
  *
  * @package   Web200\Seo\Provider
  * @author    Web200 <contact@web200.fr>
@@ -16,14 +16,20 @@ use Magento\Store\Model\ScopeInterface;
  * @license   https://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * @link      https://www.web200.fr/
  */
-class CategoriesConfig
+class CanonicalConfig
 {
     /**
      * Add rel pagination
      *
      * @var string ADD_REL_PAGINATION
      */
-    protected const ADD_REL_PAGINATION = 'seo/categories/add_rel_pagination';
+    protected const ADD_REL_PAGINATION = 'seo/canonical/add_rel_pagination';
+    /**
+     * CMS
+     *
+     * @var string CMS
+     */
+    protected const CMS = 'seo/canonical/cms';
     /**
      * Scope config
      *
@@ -32,7 +38,7 @@ class CategoriesConfig
     protected $scopeConfig;
 
     /**
-     * SitemapConfig constructor.
+     * CanonicalConfig constructor.
      *
      * @param ScopeConfigInterface $scopeConfig
      */
@@ -52,5 +58,17 @@ class CategoriesConfig
     public function isRelPagination($store = null): bool
     {
         return (bool)$this->scopeConfig->getValue(self::ADD_REL_PAGINATION, ScopeInterface::SCOPE_STORES, $store);
+    }
+
+    /**
+     * Is cms active
+     *
+     * @param mixed $store
+     *
+     * @return bool
+     */
+    public function isCmsActive($store = null): bool
+    {
+        return (bool)$this->scopeConfig->getValue(self::CMS, ScopeInterface::SCOPE_STORES, $store);
     }
 }

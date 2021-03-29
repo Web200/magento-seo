@@ -12,7 +12,7 @@ use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Page\Config as PageConfig;
 use Magento\Framework\View\Result\Page;
 use Magento\Theme\Block\Html\Pager;
-use Web200\Seo\Provider\CategoriesConfig;
+use Web200\Seo\Provider\CanonicalConfig;
 
 /**
  * Class AddCategoryCanonical
@@ -44,30 +44,30 @@ class AddCategoryCanonical
      */
     protected $categoryHelper;
     /**
-     * Categories config
+     * Canonical config
      *
-     * @var CategoriesConfig $categoriesConfig
+     * @var CanonicalConfig $canonicalConfig
      */
-    protected $categoriesConfig;
+    protected $canonicalConfig;
 
     /**
      * AddCanonicalToCategories constructor.
      *
-     * @param CategoriesConfig $categoriesConfig
-     * @param CategoryHelper   $categoryHelper
-     * @param PageConfig       $pageConfig
-     * @param UrlInterface     $urlBuilder
+     * @param CanonicalConfig $canonicalConfig
+     * @param CategoryHelper  $categoryHelper
+     * @param PageConfig      $pageConfig
+     * @param UrlInterface    $urlBuilder
      */
     public function __construct(
-        CategoriesConfig $categoriesConfig,
+        CanonicalConfig $canonicalConfig,
         CategoryHelper $categoryHelper,
         PageConfig $pageConfig,
         UrlInterface $urlBuilder
     ) {
-        $this->pageConfig     = $pageConfig;
-        $this->urlBuilder     = $urlBuilder;
-        $this->categoryHelper = $categoryHelper;
-        $this->categoriesConfig = $categoriesConfig;
+        $this->pageConfig      = $pageConfig;
+        $this->urlBuilder      = $urlBuilder;
+        $this->categoryHelper  = $categoryHelper;
+        $this->canonicalConfig = $canonicalConfig;
     }
 
     /**
@@ -80,7 +80,7 @@ class AddCategoryCanonical
      */
     public function afterExecute(View $subject, $page)
     {
-        if (!$this->categoriesConfig->isRelPagination()) {
+        if (!$this->canonicalConfig->isRelPagination()) {
             return $page;
         }
 
@@ -130,8 +130,8 @@ class AddCategoryCanonical
     /**
      * Retrieve page URL by defined parameters
      *
-     * @param string   $varName
-     * @param int      $page
+     * @param string $varName
+     * @param int    $page
      *
      * @return string
      */
