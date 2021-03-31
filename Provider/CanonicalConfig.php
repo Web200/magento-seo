@@ -25,6 +25,12 @@ class CanonicalConfig
      */
     protected const ADD_REL_PAGINATION = 'seo/canonical/add_rel_pagination';
     /**
+     * Simple product sitemap
+     *
+     * @var string SIMPLE_PRODUCT_SITEMAP
+     */
+    protected const SIMPLE_PRODUCT_SITEMAP = 'seo/canonical/simple_product_sitemap';
+    /**
      * CMS
      *
      * @var string CMS
@@ -70,5 +76,17 @@ class CanonicalConfig
     public function isCmsActive($store = null): bool
     {
         return (bool)$this->scopeConfig->getValue(self::CMS, ScopeInterface::SCOPE_STORES, $store);
+    }
+
+    /**
+     * Is simple product sitemap
+     *
+     * @param mixed $store
+     *
+     * @return bool
+     */
+    public function isSimpleProductSitemap($store = null): bool
+    {
+        return (bool)$this->scopeConfig->getValue(self::SIMPLE_PRODUCT_SITEMAP, ScopeInterface::SCOPE_STORES, $store);
     }
 }

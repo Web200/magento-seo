@@ -16,5 +16,6 @@ $ composer require "web200/magento-seo"
 * Add [Hreflang tag](https://developers.google.com/search/docs/advanced/crawling/localized-versions) for Category / Product / Page / HomePage
 * Add Html sitemap for Category
 * Add canonical on category pagination tag : canonical / rel="prev" / rel="next"
+* Add product canonical in sitemap.xml
 
 You can enable or disable all options on _Store > Configuration > General > Search Engine Optimization_

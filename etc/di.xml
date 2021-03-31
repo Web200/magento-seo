@@ -15,4 +15,8 @@
     <type name="Magento\Framework\Pricing\Render\PriceBox">
         <plugin sortOrder="1" name="web200_seo_remove_schema_offer" type="Web200\Seo\Plugin\RemoveSchemaOffer"/>
     </type>
+    <!-- Generate canonical without categories in url -->
+    <type name="Magento\Sitemap\Model\ItemProvider\Product">
+        <plugin name="web200_seo_add_canonical_in_sitemap" type="Web200\Seo\Plugin\AddCanonicalInSitemap"/>
+    </type>
 </config>
