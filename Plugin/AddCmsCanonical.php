@@ -71,8 +71,13 @@ class AddCmsCanonical
             return $result;
         }
 
+        $currentUrl = $this->getCurrentUrl();
+        if ($subject instanceof Index) {
+            $currentUrl = rtrim($currentUrl, '/');
+        }
+
         $this->pageConfig->addRemotePageAsset(
-            $this->getCurrentUrl(),
+            $currentUrl,
             'canonical',
             ['attributes' => ['rel' => 'canonical']]
         );
