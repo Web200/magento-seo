@@ -25,6 +25,12 @@ class SitemapConfig
      */
     protected const CATEGORY_ACTIVE = 'seo/html_sitemap/category/active';
     /**
+     * Max depth
+     *
+     * @var string MAX_DEPTH
+     */
+    protected const MAX_DEPTH = 'seo/html_sitemap/category/max_depth';
+    /**
      * Category Url key
      *
      * @var string CATEGORY_URL_KEY
@@ -70,5 +76,17 @@ class SitemapConfig
     public function getCategoryUrlKey($store = null): string
     {
         return (string)$this->scopeConfig->getValue(self::CATEGORY_URL_KEY, ScopeInterface::SCOPE_STORES, $store);
+    }
+
+    /**
+     * Get max depth
+     *
+     * @param mixed $store
+     *
+     * @return int
+     */
+    public function getMaxDepth($store = null): int
+    {
+        return (int)$this->scopeConfig->getValue(self::MAX_DEPTH, ScopeInterface::SCOPE_STORES, $store);
     }
 }

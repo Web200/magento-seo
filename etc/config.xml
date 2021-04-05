@@ -11,6 +11,7 @@
             <html_sitemap>
                 <category>
                     <url_key>sitemap/category</url_key>
+                    <max_depth>5</max_depth>
                 </category>
             </html_sitemap>
             <microdata>

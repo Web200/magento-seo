@@ -11,6 +11,7 @@ use Magento\Framework\Data\Tree\Node;
 use Magento\Framework\Data\Tree\Node\Collection as TreeNodeCollection;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
+use Web200\Seo\Provider\SitemapConfig;
 
 /**
  * Class Sitemap
@@ -35,6 +36,12 @@ class Sitemap extends Template
      * @var State $categoryFlatConfig
      */
     protected $categoryFlatConfig;
+    /**
+     * Sitemap config
+     *
+     * @var SitemapConfig $sitemapConfig
+     */
+    protected $sitemapConfig;
 
     /**
      * Sitemap constructor.
@@ -42,18 +49,21 @@ class Sitemap extends Template
      * @param Context        $context
      * @param CategoryHelper $categoryHelper
      * @param State          $categoryFlatState
+     * @param SitemapConfig  $sitemapConfig
      * @param mixed[]        $data
      */
     public function __construct(
         Context $context,
         CategoryHelper $categoryHelper,
         State $categoryFlatState,
+        SitemapConfig $sitemapConfig,
         array $data = []
     ) {
         parent::__construct($context, $data);
 
         $this->categoryHelper     = $categoryHelper;
         $this->categoryFlatConfig = $categoryFlatState;
+        $this->sitemapConfig      = $sitemapConfig;
     }
 
     /**
@@ -104,5 +114,24 @@ class Sitemap extends Template
         }
 
         return $subcategories;
+    }
+
+    /**
+     * Get child categories
+     *
+     * @param Node $category
+     *
+     * @return string
+     */
+    public function getBlockChildCategories(Node $category): string
+    {
+        if ($category->getLevel() >= ($this->sitemapConfig->getMaxDepth() + 1)) {
+            return '';
+        }
+
+        return $this->getLayout()->createBlock(Sitemap::class)
+            ->setData('category', $category)
+            ->setTemplate('Web200_Seo::sitemap/children_category.phtml')
+            ->toHtml();
     }
 }

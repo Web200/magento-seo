@@ -102,6 +102,9 @@
                     <field id="url_key" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Url Key</label>
                     </field>
+                    <field id="max_depth" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Max depth</label>
+                    </field>
                 </group>
             </group>
             <group id="microdata" translate="label,comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">

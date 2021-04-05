@@ -22,19 +22,7 @@ use Web200\Seo\Block\Sitemap;
                 <a href="<?= $categoryHelper->getCategoryUrl($category) ?>">
                     <span><?= $category->getName() ?></span>
                 </a>
-                <?php /** @var TreeNodeCollection $childrenCategories */?>
-                <?php if ($childrenCategories = $block->getChildCategories($category)) : ?>
-                    <ul>
-                        <?php /** @var Node $childCategory */?>
-                        <?php foreach ($childrenCategories as $childCategory) : ?>
-                            <li class="sitemap-item level-<?= $childCategory->getLevel() ?>">
-                                <a href="<?= $categoryHelper->getCategoryUrl($childCategory); ?>">
-                                    <span><?= $childCategory->getName() ?></span>
-                                </a>
-                            </li>
-                        <?php endforeach ?>
-                    </ul>
-                <?php endif ?>
+                <?= $block->getBlockChildCategories($category) ?>
             </li>
         <?php endforeach ?>
     </ul>

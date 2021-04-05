@@ -1,0 +1,30 @@
+<?php
+
+declare(strict_types=1);
+
+use Magento\Catalog\Helper\Category as CategoryHelper;
+use Magento\Framework\Data\Tree\Node;
+use Magento\Framework\Data\Tree\Node\Collection as TreeNodeCollection;
+use Web200\Seo\Block\Sitemap;
+
+?>
+
+<?php /** @var Sitemap $block */?>
+<?php /** @var CategoryHelper $categoryHelper */?>
+<?php $categoryHelper = $block->getCategoryHelper() ?>
+<?php /** @var TreeNodeCollection $childrenCategories */?>
+
+<?php $category = $block->getData('category') ?>
+<?php if ($childrenCategories = $block->getChildCategories($category)) : ?>
+    <ul>
+        <?php /** @var Node $childCategory */?>
+        <?php foreach ($childrenCategories as $childCategory) : ?>
+            <li class="sitemap-item level-<?= $childCategory->getLevel() ?>">
+                <a href="<?= $categoryHelper->getCategoryUrl($childCategory); ?>">
+                    <span><?= $childCategory->getName() ?></span>
+                </a>
+                <?= $block->getBlockChildCategories($childCategory) ?>
+            </li>
+        <?php endforeach ?>
+    </ul>
+<?php endif ?>
