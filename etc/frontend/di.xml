@@ -33,4 +33,9 @@
         <plugin name="web200_seo_add_cms_index_canonical"
                 type="Web200\Seo\Plugin\AddCmsCanonical"/>
     </type>
+
+    <!-- Add meta robots in product page -->
+    <type name="Magento\Catalog\Controller\Product\View">
+        <plugin name="web200_seo_add_product_meta_robots" type="Web200\Seo\Plugin\MetaRobots\Product"/>
+    </type>
 </config>

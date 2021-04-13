@@ -17,5 +17,6 @@ $ composer require "web200/magento-seo"
 * Add Html sitemap for Category
 * Add canonical on category pagination tag : canonical / rel="prev" / rel="next"
 * Add product canonical in sitemap.xml
+* Add Meta Robots to product page (INDEX / FOLLOW).
 
 You can enable or disable all options on _Store > Configuration > General > Search Engine Optimization_
