@@ -33,7 +33,7 @@ class Product
      *
      * @var Registry $registry
      */
-    protected Registry $registry;
+    protected $registry;
     /**
      * Meta robots config
      *
