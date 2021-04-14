@@ -25,6 +25,12 @@ class MetaRobotsConfig
      */
     protected const DEFAULT_ROBOTS = 'design/search_engine_robots/default_robots';
     /**
+     * Category noindex active
+     *
+     * @var string CATEGORY_NOINDEX_ACTIVE
+     */
+    protected const CATEGORY_NOINDEX_ACTIVE = 'seo/meta_robots/category_noindex_active';
+    /**
      * Scope config
      *
      * @var ScopeConfigInterface $scopeConfig
@@ -47,10 +53,22 @@ class MetaRobotsConfig
      *
      * @param mixed $store
      *
-     * @return bool
+     * @return string
      */
     public function getDefaultRobots($store = null): string
     {
         return (string)$this->scopeConfig->getValue(self::DEFAULT_ROBOTS, ScopeInterface::SCOPE_STORES, $store);
+    }
+
+    /**
+     * Is category no index active
+     *
+     * @param mixed $store
+     *
+     * @return bool
+     */
+    public function isCategoryNoIndexActive($store = null): bool
+    {
+        return (bool)$this->scopeConfig->getValue(self::CATEGORY_NOINDEX_ACTIVE, ScopeInterface::SCOPE_STORES, $store);
     }
 }

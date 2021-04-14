@@ -38,4 +38,8 @@
     <type name="Magento\Catalog\Controller\Product\View">
         <plugin name="web200_seo_add_product_meta_robots" type="Web200\Seo\Plugin\MetaRobots\Product"/>
     </type>
+    <!-- Add meta robots in category page -->
+    <type name="Magento\Catalog\Controller\Category\View">
+        <plugin name="web200_seo_add_category_meta_robots" type="Web200\Seo\Plugin\MetaRobots\Category"/>
+    </type>
 </config>
