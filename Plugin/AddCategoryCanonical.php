@@ -84,6 +84,10 @@ class AddCategoryCanonical
             return $page;
         }
 
+        if (!$page->getLayout()) {
+            return $page;
+        }
+
         /** @var ListProduct $productListBlock */
         $productListBlock = $page->getLayout()->getBlock('category.products.list');
 
