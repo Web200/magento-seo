@@ -44,7 +44,8 @@ final class Property implements PropertyInterface
         'jpeg',
         'webp',
         'gif',
-        'png'
+        'png',
+        'svg'
     ];
 
     /**
