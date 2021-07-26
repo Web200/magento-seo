@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Web200\Seo\Service\HrefLang;
 
 use Magento\Cms\Api\PageRepositoryInterface;
@@ -9,21 +11,37 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Store\Model\Store;
 use Web200\Seo\Api\CmsPageUrlRetrieverInterface;
 
+/**
+ * Class CmsPageUrlRetriever
+ *
+ * @package   Web200\Seo\Service\HrefLang
+ * @author    Web200 <contact@web200.fr>
+ * @copyright 2021 Web200
+ * @license   https://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @link      https://www.web200.fr/
+ */
 class CmsPageUrlRetriever implements CmsPageUrlRetrieverInterface
 {
     /**
      * @var PageRepositoryInterface
      */
-    private $pageRepository;
+    protected $pageRepository;
     /**
      * @var CmsPageUrlPathGenerator
      */
-    private $cmsPageUrlPathGenerator;
+    protected $cmsPageUrlPathGenerator;
     /**
      * @var PageResource
      */
-    private $pageResource;
+    protected $pageResource;
 
+    /**
+     * CmsPageUrlRetriever constructor.
+     *
+     * @param PageRepositoryInterface $pageRepository
+     * @param CmsPageUrlPathGenerator $cmsPageUrlPathGenerator
+     * @param PageResource            $pageResource
+     */
     public function __construct(
         PageRepositoryInterface $pageRepository,
         CmsPageUrlPathGenerator $cmsPageUrlPathGenerator,
@@ -35,11 +53,13 @@ class CmsPageUrlRetriever implements CmsPageUrlRetrieverInterface
     }
 
     /**
+     * Get url
+     *
      * @param int $identifier The page ID
      * @param Store $store
      * @return string
      */
-    public function getUrl($identifier, $store)
+    public function getUrl($identifier, $store): string
     {
         try {
             $page = $this->pageRepository->getById($identifier);

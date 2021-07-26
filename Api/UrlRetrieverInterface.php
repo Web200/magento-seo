@@ -18,9 +18,11 @@ use Magento\Store\Model\Store;
 interface UrlRetrieverInterface
 {
     /**
+     * Get url
+     *
      * @param string|int $identifier
      * @param Store $store
      * @return string
      */
-    public function getUrl($identifier, $store);
+    public function getUrl($identifier, $store): string;
 }

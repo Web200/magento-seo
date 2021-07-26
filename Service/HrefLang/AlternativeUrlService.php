@@ -75,17 +75,22 @@ class AlternativeUrlService
      */
     public function getAlternativeUrl($store): string
     {
+        $url = '';
         switch ($this->request->getFullActionName()) {
             case 'catalog_category_view':
-                return $this->categoryUrlRetriever->getUrl($this->request->getParam('id'), $store);
+                $url = $this->categoryUrlRetriever->getUrl($this->request->getParam('id'), $store);
+                break;
             case 'catalog_product_view':
-                return $this->productUrlRetriever->getUrl($this->request->getParam('id'), $store);
+                $url = $this->productUrlRetriever->getUrl($this->request->getParam('id'), $store);
+                break;
             case 'cms_page_view':
-                return $this->cmsPageUrlRetriever->getUrl($this->request->getParam('page_id'), $store);
+                $url = $this->cmsPageUrlRetriever->getUrl($this->request->getParam('page_id'), $store);
+                break;
             case 'cms_index_index':
-                return $store->getBaseUrl();
+                $url = $store->getBaseUrl();
+                break;
         }
 
-        return '';
+       return $url;
     }
 }
