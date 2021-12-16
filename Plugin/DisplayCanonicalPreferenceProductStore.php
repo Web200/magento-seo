@@ -125,7 +125,7 @@ class DisplayCanonicalPreferenceProductStore
                 false,
                 $storeId
             );
-            $totalWebsites = count($product->getWebsiteStoreIds());
+            $totalWebsites = count($product->getWebsiteIds());
             if ($totalWebsites > 1 &&
                 $this->canonicalConfig->getStorePreferenceStore() !== $storeId) {
                 $name = $product->getUrlModel()->getUrl($product, ['_ignore_category' => true]);
