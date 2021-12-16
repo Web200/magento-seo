@@ -31,6 +31,18 @@ class CanonicalConfig
      */
     protected const SIMPLE_PRODUCT_SITEMAP = 'seo/canonical/simple_product_sitemap';
     /**
+     * Simple product sitemap
+     *
+     * @var string SIMPLE_PRODUCT_SITEMAP
+     */
+    protected const STORE_PREFERENCE_ENABLE = 'seo/canonical/store_preference_enable';
+    /**
+     * Store preference store
+     *
+     * @var string STORE_PREFERENCE_STORE
+     */
+    protected const STORE_PREFERENCE_STORE = 'seo/canonical/store_preference_store';
+    /**
      * CMS
      *
      * @var string CMS
@@ -88,5 +100,25 @@ class CanonicalConfig
     public function isSimpleProductSitemap($store = null): bool
     {
         return (bool)$this->scopeConfig->getValue(self::SIMPLE_PRODUCT_SITEMAP, ScopeInterface::SCOPE_STORES, $store);
+    }
+
+    /**
+     * Is store preference enable
+     *
+     * @return bool
+     */
+    public function isStorePreferenceEnable(): bool
+    {
+        return (bool)$this->scopeConfig->getValue(self::STORE_PREFERENCE_ENABLE);
+    }
+
+    /**
+     * Get store preference store
+     *
+     * @return string
+     */
+    public function getStorePreferenceStore(): int
+    {
+        return (int)$this->scopeConfig->getValue(self::STORE_PREFERENCE_STORE);
     }
 }

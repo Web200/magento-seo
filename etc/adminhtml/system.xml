@@ -135,6 +135,17 @@
                     <label>Use simple canonical for product in sitemap</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+                <field id="store_preference_enable" translate="label" type="select" sortOrder="50" showInDefault="1">
+                    <label>Display product canonical in this store if product exist in other store</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="store_preference_store" translate="label" type="select" sortOrder="60" showInDefault="1">
+                    <label>Display product canonical in this store if product exist in other store</label>
+                    <source_model>Web200\Seo\Model\Config\Source\Stores</source_model>
+                    <depends>
+                        <field id="store_preference_enable">1</field>
+                    </depends>
+                </field>
             </group>
             <group id="meta_robots" translate="label,comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                 <label>Meta robots</label>

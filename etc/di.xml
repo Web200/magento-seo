@@ -19,4 +19,8 @@
     <type name="Magento\Sitemap\Model\ItemProvider\Product">
         <plugin name="web200_seo_add_canonical_in_sitemap" type="Web200\Seo\Plugin\AddCanonicalInSitemap"/>
     </type>
+    <type name="Magento\Catalog\Helper\Product\View">
+        <plugin name="display_canonical_preference_product_store"
+                type="Web200\Seo\Plugin\DisplayCanonicalPreferenceProductStore"/>
+    </type>
 </config>
