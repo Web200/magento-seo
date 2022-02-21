@@ -19,6 +19,7 @@ $ composer require "web200/magento-seo"
 * Add **NOINDEX, NOFOLLOW** on category page with params other than "p"
 * Add product canonical in sitemap.xml
 * Add specific Meta Robots to product page (**INDEX, FOLLOW / NOINDEX, FOLLOW / INDEX, NOFOLLOW / NOINDEX, NOFOLLOW**)
+* Add specific Meta Robots to cms page (**INDEX, FOLLOW / NOINDEX, FOLLOW / INDEX, NOFOLLOW / NOINDEX, NOFOLLOW**)
 * Add canonical only on one store (if product exist in others)
 
 You can enable or disable all options on _Store > Configuration > General > Search Engine Optimization_

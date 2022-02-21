@@ -2,7 +2,7 @@
     "name": "web200/magento-seo",
     "description": "Magento 2 Seo Module",
     "require": {
-        "php": "^7.0"
+        "php": "^7.4"
     },
     "type": "magento2-module",
     "license": [
