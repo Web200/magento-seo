@@ -90,11 +90,11 @@ class Product implements AdapterInterface
                 $this->property->setImage((string)$this->getImage($product, 'product_base_image')->getImageUrl());
             }
             $this->property->setUrl($product->getProductUrl());
-            $this->property->addProperty(
-                'product:price:amount',
-                (string)round($product->getFinalPrice(), 2),
-                'product'
-            );
+//            $this->property->addProperty(
+//                'product:price:amount',
+//                (string)round($product->getFinalPrice(), 2),
+//                'product'
+//            );
             $this->property->addProperty('item', $product->getData(), Property::META_DATA_GROUP);
         }
 
