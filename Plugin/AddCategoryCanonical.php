@@ -80,6 +80,10 @@ class AddCategoryCanonical
      */
     public function afterExecute(View $subject, $page)
     {
+        if (!($page instanceof Page)) {
+            return $page;
+        }
+
         if (!$this->canonicalConfig->isRelPagination()) {
             return $page;
         }
