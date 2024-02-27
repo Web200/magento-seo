@@ -77,7 +77,7 @@ class Category
         }
 
         if (!empty(array_diff($params, ['id', 'p']))) {
-            $this->pageConfig->setMetadata('robots', 'NOINDEX, NOFOLLOW');
+            $this->pageConfig->setMetadata('robots', 'NOINDEX, FOLLOW');
         }
 
         return $page;
