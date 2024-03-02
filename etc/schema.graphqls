@@ -1,0 +1,57 @@
+type Query {
+    seoInfo: SeoData @resolver(class: "Web200\\Seo\\Model\\Resolver\\Seo")
+}
+
+type SeoData @doc(description: "Seo Data Fields") {
+    metaRobots: MetaRobotsConfigurations
+    canonical: CanonicalConfigurations
+    microData: MicroDataConfigurations
+    siteMap: SiteMapConfigurations
+    siteVerification: SiteVerificationConfigurations
+    twitterCard: TwitterCardConfigurations
+    hreflang: HreflangConfigurations
+}
+
+type MetaRobotsConfigurations {
+    isNoIndexActive: Boolean
+    defaultRobots: String
+}
+
+type CanonicalConfigurations {
+    isRelPagination: Boolean
+    isCmsActive: Boolean
+    isSimpleProductSitemap: Boolean
+    isStorePreferenceEnable: Boolean
+}
+
+type MicroDataConfigurations {
+    brand: String
+    isActive: Boolean
+}
+
+type SiteMapConfigurations {
+    isCategoryActive: Boolean
+    categoryUrlKey: String
+    maxDepth: Int
+}
+
+type SiteVerificationConfigurations {
+    isActive: Boolean
+    googleVerificationCode: String
+    bingVerificationCode: String
+    pintrestVerificationCode: String
+    yandexVerificationCode: String
+}
+
+type TwitterCardConfigurations {
+    isActive: Boolean
+    defaultCardType: String
+    defaultSiteUsername: String
+    defaultCreator: String
+}
+
+type HreflangConfigurations {
+    isActive: Boolean
+    useSameWebsiteOnly: Boolean
+    localeCode: String
+}
