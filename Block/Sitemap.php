@@ -11,6 +11,7 @@ use Magento\Framework\Data\Tree\Node;
 use Magento\Framework\Data\Tree\Node\Collection as TreeNodeCollection;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
+use Mcc\BrandManagement\Provider\Config;
 use Web200\Seo\Provider\SitemapConfig;
 
 /**
@@ -71,6 +72,12 @@ class Sitemap extends Template
      */
     public function _prepareLayout()
     {
+        $metaTitle = $this->sitemapConfig->getCategoryMetaTitle();
+        if ($metaTitle) {
+            $this->pageConfig->getTitle()->set($metaTitle);
+        }
+        $this->pageConfig->setDescription($this->sitemapConfig->getCategoryMetaDescription());
+
         return parent::_prepareLayout();
     }
 
