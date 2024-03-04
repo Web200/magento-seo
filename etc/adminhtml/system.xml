@@ -105,6 +105,12 @@
                     <field id="max_depth" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                         <label>Max depth</label>
                     </field>
+                    <field id="meta_title" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Meta Title</label>
+                    </field>
+                    <field id="meta_description" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Meta Description</label>
+                    </field>
                 </group>
             </group>
             <group id="microdata" translate="label,comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
@@ -150,7 +156,7 @@
             <group id="meta_robots" translate="label,comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                 <label>Meta robots</label>
                 <field id="category_noindex_active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Add NOINDEX / NOFOLLOW on category page other than page containing ?p= parameter</label>
+                    <label>Add NOINDEX / FOLLOW on category page other than page containing ?p= parameter</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>

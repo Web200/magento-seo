@@ -12,7 +12,7 @@ use Magento\Store\Model\ScopeInterface;
  *
  * @package   Web200\Seo\Provider
  * @author    Web200 <contact@web200.fr>
- * @copyright 2021 Web200
+ * @copyright 2024 Web200
  * @license   https://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  * @link      https://www.web200.fr/
  */
@@ -36,6 +36,19 @@ class SitemapConfig
      * @var string CATEGORY_URL_KEY
      */
     protected const CATEGORY_URL_KEY = 'seo/html_sitemap/category/url_key';
+    /**
+     * Category Url key
+     *
+     * @var string CATEGORY_URL_KEY
+     */
+    protected const CATEGORY_META_TITLE = 'seo/html_sitemap/category/meta_title';
+    /**
+     * Category Url key
+     *
+     * @var string CATEGORY_URL_KEY
+     */
+    protected const CATEGORY_META_DESCRIPTION = 'seo/html_sitemap/category/meta_description';
+
     /**
      * Scope config
      *
@@ -76,6 +89,30 @@ class SitemapConfig
     public function getCategoryUrlKey($store = null): string
     {
         return (string)$this->scopeConfig->getValue(self::CATEGORY_URL_KEY, ScopeInterface::SCOPE_STORES, $store);
+    }
+
+    /**
+     * Get category url key
+     *
+     * @param mixed $store
+     *
+     * @return string
+     */
+    public function getCategoryMetaTitle($store = null): string
+    {
+        return (string)$this->scopeConfig->getValue(self::CATEGORY_META_TITLE, ScopeInterface::SCOPE_STORES, $store);
+    }
+
+    /**
+     * Get category url key
+     *
+     * @param mixed $store
+     *
+     * @return string
+     */
+    public function getCategoryMetaDescription($store = null): string
+    {
+        return (string)$this->scopeConfig->getValue(self::CATEGORY_META_DESCRIPTION, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
