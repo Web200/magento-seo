@@ -60,10 +60,10 @@ class AlternativeUrlService
         ProductUrlRetrieverInterface $productUrlRetriever,
         HttpRequest $request
     ) {
-        $this->cmsPageUrlRetriever  = $cmsPageUrlRetriever;
+        $this->cmsPageUrlRetriever = $cmsPageUrlRetriever;
         $this->categoryUrlRetriever = $categoryUrlRetriever;
-        $this->productUrlRetriever  = $productUrlRetriever;
-        $this->request              = $request;
+        $this->productUrlRetriever = $productUrlRetriever;
+        $this->request = $request;
     }
 
     /**
@@ -73,24 +73,24 @@ class AlternativeUrlService
      *
      * @return string
      */
-    public function getAlternativeUrl($store): string
+    public function getAlternativeUrl($store, $id, $action): string
     {
         $url = '';
-        switch ($this->request->getFullActionName()) {
-            case 'catalog_category_view':
-                $url = $this->categoryUrlRetriever->getUrl($this->request->getParam('id'), $store);
+        switch ($action) {
+            case 'category':
+                $url = $this->categoryUrlRetriever->getUrl($id, $store);
                 break;
-            case 'catalog_product_view':
-                $url = $this->productUrlRetriever->getUrl($this->request->getParam('id'), $store);
+            case 'product':
+                $url = $this->productUrlRetriever->getUrl($id, $store);
                 break;
-            case 'cms_page_view':
-                $url = $this->cmsPageUrlRetriever->getUrl($this->request->getParam('page_id'), $store);
+            case 'cms':
+                $url = $this->cmsPageUrlRetriever->getUrl($id, $store);
                 break;
             case 'cms_index_index':
                 $url = $store->getBaseUrl();
                 break;
         }
 
-       return $url;
+        return $url;
     }
 }

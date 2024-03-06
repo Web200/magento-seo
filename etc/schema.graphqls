@@ -1,5 +1,8 @@
 type Query {
     seoInfo: SeoData @resolver(class: "Web200\\Seo\\Model\\Resolver\\Seo")
+
+    hreflangUrls(id: Int!, action: String!): [HreflangUrls!]
+        @resolver(class: "Web200\\Seo\\Model\\Resolver\\Hreflang")
 }
 
 type SeoData @doc(description: "Seo Data Fields") {
@@ -10,6 +13,11 @@ type SeoData @doc(description: "Seo Data Fields") {
     siteVerification: SiteVerificationConfigurations
     twitterCard: TwitterCardConfigurations
     hreflang: HreflangConfigurations
+}
+
+type HreflangUrls {
+    locale: String!
+    url: String!
 }
 
 type MetaRobotsConfigurations {
