@@ -63,7 +63,7 @@ class HreflangConfig
      */
     public function getLocaleCode($store = null): string
     {
-        return (string)$this->scopeConfig->getValue(self::HREFLANG_LOCALE_CODE, ScopeInterface::SCOPE_STORES, $store);
+        return (string) $this->scopeConfig->getValue(self::HREFLANG_LOCALE_CODE, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -75,7 +75,7 @@ class HreflangConfig
      */
     public function useSameWebsiteOnly($store = null): bool
     {
-        return (bool)$this->scopeConfig->getValue(self::HREFLANG_SAME_WEBSITE_ONLY, ScopeInterface::SCOPE_STORES, $store);
+        return (bool) $this->scopeConfig->getValue(self::HREFLANG_SAME_WEBSITE_ONLY, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
@@ -87,6 +87,6 @@ class HreflangConfig
      */
     public function isActive($store = null): bool
     {
-        return (bool)$this->scopeConfig->getValue(self::HREFLANG_ACTIVE, ScopeInterface::SCOPE_STORES, $store);
+        return (bool) $this->scopeConfig->getValue(self::HREFLANG_ACTIVE, ScopeInterface::SCOPE_STORES, $store);
     }
 }
