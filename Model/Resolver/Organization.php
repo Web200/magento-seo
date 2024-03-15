@@ -6,7 +6,9 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
+use Magento\Store\Model\StoreManagerInterface;
 use Web200\Seo\Provider\OrganizationConfig;
+
 
 
 class Organization implements ResolverInterface
@@ -16,13 +18,21 @@ class Organization implements ResolverInterface
    */
   protected OrganizationConfig $organizationConfig;
 
+  protected $storeManager;
+
+
   /**
    * @param OrganizationConfig $organizationConfig
+   * @param StoreManagerInterface $storeManager
    */
   public function __construct(
-    OrganizationConfig $organizationConfig
+    OrganizationConfig $organizationConfig,
+    StoreManagerInterface $storeManager
+
   ) {
     $this->organizationConfig = $organizationConfig;
+    $this->storeManager = $storeManager;
+
   }
 
   /**
@@ -38,10 +48,10 @@ class Organization implements ResolverInterface
    */
   public function resolve(Field $field, $context, ResolveInfo $info, array $value = null, array $args = null)
   {
-    if (!isset($args['store_id'])) {
-      throw new NoSuchEntityException(__('Store ID is required.'));
+    if (!isset ($args['store_code'])) {
+      throw new NoSuchEntityException(__('Store Code is required.'));
     }
-    $store_id = $args['store_id'];
+    $store_id = $this->storeManager->getStore($args['store_code'])->getId(); //$args['store_id'];
     return $this->organizationConfig->getOrganizationConfigs($store_id);
   }
 }

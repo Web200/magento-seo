@@ -4,7 +4,7 @@ type Query {
     hreflangUrls(id: Int!, action: String!): [HreflangUrls!]
         @resolver(class: "Web200\\Seo\\Model\\Resolver\\Hreflang")
 
-    organization(store_id: Int!): OrganizationConfigurations
+    organization(store_code: String!): OrganizationConfigurations
         @resolver(class: "Web200\\Seo\\Model\\Resolver\\Organization")
 }
 
@@ -20,6 +20,7 @@ type OrganizationConfigurations {
     postalCode: String!
     addressRegion: String!
     addressCountry: String!
+    alternateName: String!
 }
 
 type SeoData @doc(description: "Seo Data Fields") {
