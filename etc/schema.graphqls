@@ -3,6 +3,23 @@ type Query {
 
     hreflangUrls(id: Int!, action: String!): [HreflangUrls!]
         @resolver(class: "Web200\\Seo\\Model\\Resolver\\Hreflang")
+
+    organization(store_id: Int!): OrganizationConfigurations
+        @resolver(class: "Web200\\Seo\\Model\\Resolver\\Organization")
+}
+
+type OrganizationConfigurations {
+    name: String!
+    email: String!
+    phone: String!
+    vatID: String!
+    areaServed: String!
+    availableLanguage: String!
+    streetAddress: String!
+    addressLocality: String!
+    postalCode: String!
+    addressRegion: String!
+    addressCountry: String!
 }
 
 type SeoData @doc(description: "Seo Data Fields") {
