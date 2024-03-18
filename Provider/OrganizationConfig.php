@@ -6,6 +6,7 @@ namespace Web200\Seo\Provider;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
+use Magento\Directory\Model\RegionFactory;
 
 /**
  * Class MicrodataConfig
@@ -18,11 +19,13 @@ use Magento\Store\Model\ScopeInterface;
  */
 class OrganizationConfig
 {
+
+  protected RegionFactory $regionFactory;
   public const ORGANIZATION_CONFIG_PATHS = [
     'name' => 'general/store_information/name',
-    'email' => 'trans_email/ident_general/name',
+    'email' => 'trans_email/ident_general/email',
     'phone' => 'general/store_information/phone',
-    'vatID' => 'general/store_information/vat_number',
+    'vatID' => 'general/store_information/merchant_vat_number',
     'areaServed' => 'general/country/allow',
     'availableLanguage' => 'general/locale/code',
     'streetAddress' => 'general/store_information/street_line1',
@@ -31,6 +34,7 @@ class OrganizationConfig
     'addressRegion' => 'general/store_information/region_id',
     'addressCountry' => 'general/store_information/country_id'
   ];
+
   /**
    * Scope config
    *
@@ -42,11 +46,14 @@ class OrganizationConfig
    * SitemapConfig constructor.
    *
    * @param ScopeConfigInterface $scopeConfig
+   * @param RegionFactory $regionFactory
    */
   public function __construct(
-    ScopeConfigInterface $scopeConfig
+    ScopeConfigInterface $scopeConfig,
+    RegionFactory $regionFactory
   ) {
     $this->scopeConfig = $scopeConfig;
+    $this->regionFactory = $regionFactory;
   }
 
   /**
@@ -66,8 +73,18 @@ class OrganizationConfig
         ScopeInterface::SCOPE_STORE,
         $store
       );
+
+      if ($key === 'addressRegion') {
+        $configValues[$key] = $this->getAddressName($configValues[$key]);
+      }
     }
 
     return $configValues;
+  }
+
+  public function getAddressName($regionId): string
+  {
+    $address = $this->regionFactory->create()->load($regionId);
+    return $address->getName();
   }
 }
