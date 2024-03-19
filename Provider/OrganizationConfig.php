@@ -7,6 +7,7 @@ namespace Web200\Seo\Provider;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Directory\Model\RegionFactory;
+use Magento\Framework\Locale\TranslatedLists;
 
 /**
  * Class MicrodataConfig
@@ -21,6 +22,7 @@ class OrganizationConfig
 {
 
   protected RegionFactory $regionFactory;
+  protected TranslatedLists $localeResolver;
   public const ORGANIZATION_CONFIG_PATHS = [
     'name' => 'general/store_information/name',
     'email' => 'trans_email/ident_general/email',
@@ -47,13 +49,16 @@ class OrganizationConfig
    *
    * @param ScopeConfigInterface $scopeConfig
    * @param RegionFactory $regionFactory
+   * @param TranslatedLists $localeResolver
    */
   public function __construct(
     ScopeConfigInterface $scopeConfig,
-    RegionFactory $regionFactory
+    RegionFactory $regionFactory,
+    TranslatedLists $localeResolver
   ) {
     $this->scopeConfig = $scopeConfig;
     $this->regionFactory = $regionFactory;
+    $this->localeResolver = $localeResolver;
   }
 
   /**
@@ -76,6 +81,8 @@ class OrganizationConfig
 
       if ($key === 'addressRegion') {
         $configValues[$key] = $this->getAddressName($configValues[$key]);
+      } else if ($key === 'availableLanguage') {
+        $configValues[$key] = $this->getLanguageNameFromLocale($configValues[$key]);
       }
     }
 
@@ -86,5 +93,16 @@ class OrganizationConfig
   {
     $address = $this->regionFactory->create()->load($regionId);
     return $address->getName();
+  }
+
+  public function getLanguageNameFromLocale($localeCode): string
+  {
+    $languageOptions = $this->localeResolver->getOptionLocales();
+    foreach ($languageOptions as $languageOption) {
+      if ($languageOption['value'] == $localeCode) {
+        return rtrim(preg_replace('/\([^)]+\)/', '', $languageOption['label']));
+      }
+    }
+    return '';
   }
 }
