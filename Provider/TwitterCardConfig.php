@@ -19,6 +19,12 @@ use Magento\Store\Model\ScopeInterface;
 class TwitterCardConfig
 {
     /**
+     * TWITTER_CARD_ACTIVE
+     *
+     * @var bool TWITTER_CARD_ACTIVE
+     */
+    protected const TWITTER_CARD_ACTIVE = 'seo/twitter_card/active';
+    /**
      * Type
      *
      * @var string TYPE
@@ -52,6 +58,18 @@ class TwitterCardConfig
         ScopeConfigInterface $scopeConfig
     ) {
         $this->scopeConfig = $scopeConfig;
+    }
+
+    /**
+     * Is twitter card active
+     *
+     * @param mixed $store
+     *
+     * @return bool
+     */
+    public function isActive($store = null): bool
+    {
+        return (bool)$this->scopeConfig->getValue(self::TWITTER_CARD_ACTIVE, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**

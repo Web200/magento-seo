@@ -11,6 +11,14 @@
             </argument>
         </arguments>
     </type>
+    <type name="Web200\Seo\Service\HrefLang\AlternativeUrlService">
+        <arguments>
+            <argument name="cmsPageUrlRetriever" xsi:type="object">\Web200\Seo\Service\HrefLang\CmsPageUrlRetriever</argument>
+            <argument name="categoryUrlRetriever" xsi:type="object">\Web200\Seo\Service\HrefLang\CategoryUrlRetriever</argument>
+            <argument name="productUrlRetriever" xsi:type="object">\Web200\Seo\Service\HrefLang\ProductUrlRetriever</argument>
+            <argument name="request" xsi:type="object">Magento\Framework\App\Request\Http</argument>
+        </arguments>
+    </type>
     <!-- Remove schema Offer -->
     <type name="Magento\Framework\Pricing\Render\PriceBox">
         <plugin sortOrder="1" name="web200_seo_remove_schema_offer" type="Web200\Seo\Plugin\RemoveSchemaOffer"/>
