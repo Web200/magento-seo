@@ -6,6 +6,9 @@ type Query {
 
     organization(store_code: String!): OrganizationConfigurations
         @resolver(class: "Web200\\Seo\\Model\\Resolver\\Organization")
+
+    metaRobots(id: Int!, action: String!): Robots
+        @resolver(class: "Web200\\Seo\\Model\\Resolver\\MetaRobots")
 }
 
 type OrganizationConfigurations {
@@ -21,6 +24,10 @@ type OrganizationConfigurations {
     addressRegion: String!
     addressCountry: String!
     alternateName: String!
+}
+
+type Robots {
+    robots: String!
 }
 
 type SeoData @doc(description: "Seo Data Fields") {

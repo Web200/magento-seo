@@ -19,6 +19,13 @@
             <argument name="request" xsi:type="object">Magento\Framework\App\Request\Http</argument>
         </arguments>
     </type>
+     <type name="Web200\Seo\Service\Robots\MetaRobots">
+        <arguments>
+            <argument name="cmsMetaRobots" xsi:type="object">\Web200\Seo\Service\Robots\CmsMetaRobots</argument>
+            <argument name="productMetaRobots" xsi:type="object">\Web200\Seo\Service\Robots\ProductMetaRobots</argument>
+            <argument name="cmsIndexMetaRobots" xsi:type="object">\Web200\Seo\Service\Robots\CmsIndexMetaRobots</argument>
+        </arguments>
+    </type>
     <!-- Remove schema Offer -->
     <type name="Magento\Framework\Pricing\Render\PriceBox">
         <plugin sortOrder="1" name="web200_seo_remove_schema_offer" type="Web200\Seo\Plugin\RemoveSchemaOffer"/>
