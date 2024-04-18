@@ -23,4 +23,11 @@
         <plugin name="display_canonical_preference_product_store"
                 type="Web200\Seo\Plugin\DisplayCanonicalPreferenceProductStore"/>
     </type>
+    <type name="Magento\Sitemap\Model\ItemProvider\Composite">
+        <arguments>
+            <argument name="itemProviders" xsi:type="array">
+                <item name="seoProvider" xsi:type="object">Web200\Seo\Model\Sitemap</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
