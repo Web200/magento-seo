@@ -45,7 +45,7 @@ class ProductUrlRetriever implements ProductUrlRetrieverInterface
         ProductRepositoryInterface $productRepository,
         ProductUrlPathGenerator $productUrlPathGenerator
     ) {
-        $this->productRepository       = $productRepository;
+        $this->productRepository = $productRepository;
         $this->productUrlPathGenerator = $productUrlPathGenerator;
     }
 
@@ -62,7 +62,10 @@ class ProductUrlRetriever implements ProductUrlRetrieverInterface
     {
         /** @var Product $product */
         $product = $this->productRepository->getById($identifier, false, $store->getId());
-        if ($product->isDisabled()) {
+        $websiteId = $store->getWebsiteId();
+        $associatedWebsiteIds = $product->getWebsiteIds();
+
+        if ($product->isDisabled() || !in_array($websiteId, $associatedWebsiteIds)) {
             return '';
         }
         $path = $this->productUrlPathGenerator->getUrlPathWithSuffix($product, $store->getId());

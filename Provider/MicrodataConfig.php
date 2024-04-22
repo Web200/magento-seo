@@ -25,6 +25,12 @@ class MicrodataConfig
      */
     protected const MICRODATA_BRAND = 'seo/microdata/brand';
     /**
+     * Microdata active
+     *
+     * @var string MICRODATA_BRAND
+     */
+    protected const MICRODATA_ACTIVE = 'seo/microdata/active';
+    /**
      * Scope config
      *
      * @var ScopeConfigInterface $scopeConfig
@@ -52,5 +58,17 @@ class MicrodataConfig
     public function getBrand($store = null): string
     {
         return (string)$this->scopeConfig->getValue(self::MICRODATA_BRAND, ScopeInterface::SCOPE_STORES, $store);
+    }
+
+    /**
+     * Get category url key
+     *
+     * @param mixed $store
+     *
+     * @return bool
+     */
+    public function isActive($store = null): bool
+    {
+        return (bool)$this->scopeConfig->getValue(self::MICRODATA_ACTIVE, ScopeInterface::SCOPE_STORES, $store);
     }
 }

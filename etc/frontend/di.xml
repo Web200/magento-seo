@@ -3,6 +3,9 @@
     <preference for="Web200\Seo\Api\CmsPageUrlRetrieverInterface" type="Web200\Seo\Service\HrefLang\CmsPageUrlRetriever" />
     <preference for="Web200\Seo\Api\CategoryUrlRetrieverInterface" type="Web200\Seo\Service\HrefLang\CategoryUrlRetriever" />
     <preference for="Web200\Seo\Api\ProductUrlRetrieverInterface" type="Web200\Seo\Service\HrefLang\ProductUrlRetriever" />
+    <preference for="Web200\Seo\Api\ProductMetaRobotsInterface" type="Web200\Seo\Service\Robots\ProductMetaRobots" />
+    <preference for="Web200\Seo\Api\CmsMetaRobotsInterface" type="Web200\Seo\Service\Robots\CmsMetaRobots" />
+    <preference for="Web200\Seo\Api\CmsIndexMetaRobotsInterface" type="Web200\Seo\Service\Robots\CmsIndexMetaRobots" />
     <type name="Magento\Framework\View\Page\Config">
         <plugin name="w200_seo_page_config" type="Web200\Seo\Plugin\PageConfigPlugin" />
     </type>
