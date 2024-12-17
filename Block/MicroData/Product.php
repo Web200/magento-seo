@@ -20,6 +20,8 @@ use Magento\Review\Model\Review\Summary;
 use Magento\Review\Model\Review\SummaryFactory;
 use Magento\Store\Model\StoreManagerInterface;
 use Web200\Seo\Provider\MicrodataConfig;
+use Magento\Review\Model\ResourceModel\Review\CollectionFactory as ReviewCollectionFactory;
+
 
 /**
  * Class Product
@@ -76,6 +78,12 @@ class Product extends Template
     protected $config;
 
     /**
+     * reviewCollectionFactory
+     */
+    protected $reviewCollectionFactory;
+
+
+    /**
      * Product constructor.
      *
      * @param MicrodataConfig         $config
@@ -85,6 +93,7 @@ class Product extends Template
      * @param Image                   $image
      * @param ReviewRendererInterface $reviewRenderer
      * @param SummaryFactory          $reviewSummaryFactory
+     * @param ReviewCollectionFactory $reviewCollectionFactory
      * @param Context                 $context
      * @param mixed[]                 $data
      */
@@ -96,6 +105,7 @@ class Product extends Template
         Image $image,
         ReviewRendererInterface $reviewRenderer,
         SummaryFactory $reviewSummaryFactory,
+        ReviewCollectionFactory $reviewCollectionFactory,
         Context $context,
         array $data = []
     ) {
@@ -108,6 +118,8 @@ class Product extends Template
         $this->reviewRenderer       = $reviewRenderer;
         $this->reviewSummaryFactory = $reviewSummaryFactory;
         $this->config = $config;
+        $this->reviewCollectionFactory = $reviewCollectionFactory;
+
     }
 
     /**
@@ -134,9 +146,14 @@ class Product extends Template
         if ($product) {
             /** @var string $websiteUrl */
             $websiteUrl = $this->storeManager->getStore()->getBaseUrl();
-            /** @var string $imageUrl */
-            $imageUrl = $this->image->init($product, 'product_base_image')
-                ->setImageFile($product->getFile())->getUrl();
+            /** @var string[] $imageUrls */
+            $imageUrls = [];
+            $galleryImages = $product->getMediaGalleryImages();
+            if ($galleryImages) {
+                foreach ($galleryImages as $image) {
+                    $imageUrls[] = $image->getUrl();
+                }
+            }
 
             /** @var Datetime $available */
             $available = new Datetime();
@@ -144,7 +161,7 @@ class Product extends Template
             /** @var string[] $offer */
             $offer = [
                 '@type' => 'Offer',
-                'priceCurrency' => 'EUR',
+                'priceCurrency' => $this->storeManager->getStore()->getCurrentCurrencyCode(),
                 'url' => $product->getProductUrl(),
                 'price' => round($product->getFinalPrice(), 2),
                 'priceValidUntil' => $available->format('Y-m-d')
@@ -160,13 +177,26 @@ class Product extends Template
                 '@context' => 'https://schema.org',
                 '@type' => 'Product',
                 'name' => $product->getName(),
-                'image' => $imageUrl,
+                'image' => $imageUrls,
                 'description' => $product->getShortDescription(),
                 'sku' => $product->getSku(),
+                'gtin' => $product->getGtin(),
+                'mpn' => $product->getMpn(),
                 'offers' => [
                     $offer
                 ]
             ];
+
+            $manufacturerAttribute = $product->getResource()->getAttribute('manufacturer');
+            if ($manufacturerAttribute) {
+                $manufacturerValue = $manufacturerAttribute->getFrontend()->getValue($product);
+                if (!empty($manufacturerValue) && $manufacturerValue !== 'No') {
+                    $final['Brand'] = [
+                        '@type' => 'Brand',
+                        'name' => $manufacturerValue
+                    ];
+                }
+            }
 
             /** @var string $brand */
             $brand = $this->config->getBrand();
@@ -202,6 +232,49 @@ class Product extends Template
                     'reviewCount' => $reviewCount,
                 ];
             }
+
+            $reviews = [];
+            $reviewCollection = $this->reviewCollectionFactory->create()
+                ->addEntityFilter('product', $product->getId())
+                ->addStoreFilter($this->storeManager->getStore()->getId())
+                ->addStatusFilter(\Magento\Review\Model\Review::STATUS_APPROVED)
+                ->setDateOrder();
+
+                foreach ($reviewCollection as $review) {
+                    $reviews[] = [
+                        '@type' => 'Review',
+                        'reviewRating' => [
+                            '@type' => 'Rating',
+                            'bestRating' => '5',
+                            'worstRating' => '1',
+                        ],
+                        'author' => [
+                            '@type' => 'Person',
+                            'name' => $review->getNickname()
+                        ]
+                    ];
+                }
+
+                if (!empty($reviews)) {
+                    $final['review'] = $reviews;
+                }
+
+                // Check if the product is configurable
+                if ($product->getTypeId() === 'configurable') {
+                    $childProducts = $product->getTypeInstance()->getUsedProducts($product);
+                    $prices = [];
+                    foreach ($childProducts as $childProduct) {
+                        $prices[] = $childProduct->getFinalPrice();
+                    }
+                    $final['offersss'] = [
+                        '@type' => 'AggregateOffer',
+                        'offerCount' => count($childProducts),
+                        'lowPrice' => min($prices),
+                        'highPrice' => max($prices),
+                        'priceCurrency' => $this->storeManager->getStore()->getCurrentCurrencyCode() // Dynamically set the currency
+                    ];
+                }
+
 
             return $this->serialize->serialize($final);
         }
