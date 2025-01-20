@@ -36,6 +36,12 @@ class Category extends Action
      * @var PageConfig $pageConfig
      */
     protected $pageConfig;
+    /**
+     * Url Interface
+     *
+     * @var UrlInterface $urlBuilder
+     */
+    protected $urlBuilder;
 
     /**
      * Category constructor.
