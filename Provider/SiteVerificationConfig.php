@@ -19,6 +19,12 @@ use Magento\Store\Model\ScopeInterface;
 class SiteVerificationConfig
 {
     /**
+     * SITEMAP_VERIFICATION_ACTIVE
+     *
+     * @var bool SITEMAP_VERIFICATION_ACTIVE
+     */
+    protected const SITEMAP_VERIFICATION_ACTIVE = 'seo/verifications/active';
+    /**
      * Google
      *
      * @var string GOOGLE
@@ -58,6 +64,18 @@ class SiteVerificationConfig
         ScopeConfigInterface $scopeConfig
     ) {
         $this->scopeConfig = $scopeConfig;
+    }
+
+    /**
+     * Is sitemap verification active
+     *
+     * @param mixed $store
+     *
+     * @return bool
+     */
+    public function isActive($store = null): bool
+    {
+        return (bool)$this->scopeConfig->getValue(self::SITEMAP_VERIFICATION_ACTIVE, ScopeInterface::SCOPE_STORES, $store);
     }
 
     /**
