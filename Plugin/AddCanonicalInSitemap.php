@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Web200\Seo\Plugin;
 
 use Magento\Framework\App\ResourceConnection;
+use Magento\Framework\Escaper;
 use Magento\Sitemap\Model\ItemProvider\Product;
 use Magento\Sitemap\Model\SitemapItem;
 use Magento\Sitemap\Model\SitemapItemInterfaceFactory;
@@ -22,39 +23,19 @@ use Web200\Seo\Provider\CanonicalConfig;
 class AddCanonicalInSitemap
 {
     /**
-     * Resource connection
-     *
-     * @var ResourceConnection $resource
-     */
-    protected $resource;
-    /**
-     * sitemap item factory
-     *
-     * @var SitemapItemInterfaceFactory $itemFactory
-     */
-    protected $itemFactory;
-    /**
-     * Canonical config
-     *
-     * @var CanonicalConfig $canonicalConfig
-     */
-    protected $canonicalConfig;
-
-    /**
      * Url constructor.
      *
      * @param CanonicalConfig             $canonicalConfig
      * @param ResourceConnection          $resource
      * @param SitemapItemInterfaceFactory $itemFactory
+     * @param Escaper                     $escaper
      */
     public function __construct(
-        CanonicalConfig $canonicalConfig,
-        ResourceConnection $resource,
-        SitemapItemInterfaceFactory $itemFactory
+        protected CanonicalConfig $canonicalConfig,
+        protected ResourceConnection $resource,
+        protected SitemapItemInterfaceFactory $itemFactory,
+        protected Escaper $escaper
     ) {
-        $this->resource    = $resource;
-        $this->itemFactory = $itemFactory;
-        $this->canonicalConfig = $canonicalConfig;
     }
 
     /**
@@ -77,8 +58,9 @@ class AddCanonicalInSitemap
             if (isset($items[$requestPath['entity_id']])) {
                 /** @var SitemapItem $sitemapItem */
                 $sitemapItem = $items[$requestPath['entity_id']];
+                $url = $this->escaper->escapeUrl($requestPath['request_path']);
                 $sitemapItem = $this->itemFactory->create([
-                    'url'             => $requestPath['request_path'],
+                    'url'             => $url,
                     'updatedAt'       => $sitemapItem->getUpdatedAt(),
                     'images'          => $sitemapItem->getImages(),
                     'priority'        => $sitemapItem->getPriority(),

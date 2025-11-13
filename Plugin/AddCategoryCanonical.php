@@ -8,6 +8,7 @@ use Magento\Catalog\Block\Product\ListProduct;
 use Magento\Catalog\Block\Product\ProductList\Toolbar;
 use Magento\Catalog\Controller\Category\View;
 use Magento\Catalog\Helper\Category as CategoryHelper;
+use Magento\Framework\Escaper;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Page\Config as PageConfig;
 use Magento\Framework\View\Result\Page;
@@ -26,48 +27,21 @@ use Web200\Seo\Provider\CanonicalConfig;
 class AddCategoryCanonical
 {
     /**
-     * Page config
-     *
-     * @var PageConfig $pageConfig
-     */
-    protected $pageConfig;
-    /**
-     * Url builder
-     *
-     * @var UrlInterface $urlBuilder
-     */
-    protected $urlBuilder;
-    /**
-     * Category helper
-     *
-     * @var CategoryHelper $categoryHelper
-     */
-    protected $categoryHelper;
-    /**
-     * Canonical config
-     *
-     * @var CanonicalConfig $canonicalConfig
-     */
-    protected $canonicalConfig;
-
-    /**
      * AddCanonicalToCategories constructor.
      *
      * @param CanonicalConfig $canonicalConfig
      * @param CategoryHelper  $categoryHelper
      * @param PageConfig      $pageConfig
      * @param UrlInterface    $urlBuilder
+     * @param Escaper         $escape
      */
     public function __construct(
-        CanonicalConfig $canonicalConfig,
-        CategoryHelper $categoryHelper,
-        PageConfig $pageConfig,
-        UrlInterface $urlBuilder
+        protected CanonicalConfig $canonicalConfig,
+        protected CategoryHelper $categoryHelper,
+        protected PageConfig $pageConfig,
+        protected UrlInterface $urlBuilder,
+        protected Escaper $escape
     ) {
-        $this->pageConfig      = $pageConfig;
-        $this->urlBuilder      = $urlBuilder;
-        $this->categoryHelper  = $categoryHelper;
-        $this->canonicalConfig = $canonicalConfig;
     }
 
     /**
@@ -156,6 +130,6 @@ class AddCategoryCanonical
             $urlParams['_query'] = [$varName => $page];
         }
 
-        return $this->urlBuilder->getUrl('*/*/*', $urlParams);
+        return $this->escaper->escapeUrl($this->urlBuilder->getUrl('*/*/*', $urlParams));
     }
 }

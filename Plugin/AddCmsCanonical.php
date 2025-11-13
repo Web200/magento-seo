@@ -6,6 +6,7 @@ namespace Web200\Seo\Plugin;
 
 use Magento\Cms\Controller\Index\Index;
 use Magento\Cms\Controller\Page\View;
+use Magento\Framework\Escaper;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Page\Config as PageConfig;
 use Web200\Seo\Provider\CanonicalConfig;
@@ -22,39 +23,19 @@ use Web200\Seo\Provider\CanonicalConfig;
 class AddCmsCanonical
 {
     /**
-     * Page config
-     *
-     * @var PageConfig $pageConfig
-     */
-    protected $pageConfig;
-    /**
-     * Url builder
-     *
-     * @var UrlInterface $urlBuilder
-     */
-    protected $urlBuilder;
-    /**
-     * Canonical config
-     *
-     * @var CanonicalConfig $canonicalConfig
-     */
-    protected $canonicalConfig;
-
-    /**
      * AddCmsCanonical constructor.
      *
      * @param CanonicalConfig $canonicalConfig
      * @param PageConfig      $pageConfig
      * @param UrlInterface    $urlBuilder
+     * @param Escaper         $escaper
      */
     public function __construct(
-        CanonicalConfig $canonicalConfig,
-        PageConfig $pageConfig,
-        UrlInterface $urlBuilder
+        protected CanonicalConfig $canonicalConfig,
+        protected PageConfig $pageConfig,
+        protected UrlInterface $urlBuilder,
+        protected Escaper $escaper
     ) {
-        $this->pageConfig      = $pageConfig;
-        $this->urlBuilder      = $urlBuilder;
-        $this->canonicalConfig = $canonicalConfig;
     }
 
     /**
@@ -77,7 +58,7 @@ class AddCmsCanonical
         }
 
         $this->pageConfig->addRemotePageAsset(
-            $currentUrl,
+            $this->escaper->escapeUrl($currentUrl),
             'canonical',
             ['attributes' => ['rel' => 'canonical']]
         );
