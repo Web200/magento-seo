@@ -33,14 +33,14 @@ class AddCategoryCanonical
      * @param CategoryHelper  $categoryHelper
      * @param PageConfig      $pageConfig
      * @param UrlInterface    $urlBuilder
-     * @param Escaper         $escape
+     * @param Escaper         $escaper
      */
     public function __construct(
         protected CanonicalConfig $canonicalConfig,
         protected CategoryHelper $categoryHelper,
         protected PageConfig $pageConfig,
         protected UrlInterface $urlBuilder,
-        protected Escaper $escape
+        protected Escaper $escaper
     ) {
     }
 
