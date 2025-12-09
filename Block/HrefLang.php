@@ -79,7 +79,8 @@ class HrefLang extends Template
      */
     protected function getStoreUrl(Store $store): string
     {
-        return $this->alternativeUrlService->getAlternativeUrl($store);
+        #its just for testing purpose
+        return $this->alternativeUrlService->getAlternativeUrl($store, 1, 'product');
     }
 
     /**
