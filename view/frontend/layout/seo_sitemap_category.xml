@@ -3,7 +3,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <block class="Web200\Seo\Block\Sitemap" template="Web200_Seo::sitemap/category.phtml" />
+            <block class="Web200\Seo\Block\Sitemap" name="web200-category" template="Web200_Seo::sitemap/category.phtml" />
         </referenceContainer>
         <!-- breadcrumbs -->
         <referenceBlock name="breadcrumbs">
