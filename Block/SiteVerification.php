@@ -46,19 +46,6 @@ class SiteVerification extends Template implements SeoBlockInterface
      */
     public const YANDEX_VERIFICATION = 'yandex-verification';
     /**
-     * Site verification config
-     *
-     * @var SiteVerificationConfig $config
-     */
-    protected $config;
-    /**
-     * Property interface
-     *
-     * @var PropertyInterface $property
-     */
-    protected $property;
-
-    /**
      * SiteVerification constructor.
      *
      * @param Context                $context
@@ -68,14 +55,11 @@ class SiteVerification extends Template implements SeoBlockInterface
      */
     public function __construct(
         Context $context,
-        SiteVerificationConfig $config,
-        PropertyInterface $property,
+        protected SiteVerificationConfig $config,
+        protected PropertyInterface $property,
         array $data = []
     ) {
         parent::__construct($context, $data);
-
-        $this->config   = $config;
-        $this->property = $property;
     }
 
     /**

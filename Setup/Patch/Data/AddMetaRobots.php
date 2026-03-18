@@ -20,30 +20,15 @@ use Web200\Seo\Model\Config\Source\MetaRobots;
 class AddMetaRobots implements DataPatchInterface
 {
     /**
-     * Module dataSetup
-     *
-     * @var ModuleDataSetupInterface $moduleDataSetup
-     */
-    protected $moduleDataSetup;
-    /**
-     * EavSetup factory
-     *
-     * @var EavSetupFactory $eavSetupFactory
-     */
-    protected $eavSetupFactory;
-
-    /**
      * AddMetaRobots constructor.
      *
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param EavSetupFactory          $eavSetupFactory
      */
     public function __construct(
-        ModuleDataSetupInterface $moduleDataSetup,
-        EavSetupFactory $eavSetupFactory
+        protected ModuleDataSetupInterface $moduleDataSetup,
+        protected EavSetupFactory $eavSetupFactory
     ) {
-        $this->moduleDataSetup = $moduleDataSetup;
-        $this->eavSetupFactory = $eavSetupFactory;
     }
 
     /**

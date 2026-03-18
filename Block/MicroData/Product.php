@@ -33,49 +33,6 @@ use Web200\Seo\Provider\MicrodataConfig;
 class Product extends Template
 {
     /**
-     * Json
-     *
-     * @var Json $serialize
-     */
-    protected $serialize;
-    /**
-     * Store manager
-     *
-     * @var StoreManagerInterface $storeManager
-     */
-    protected $storeManager;
-    /**
-     * Registry
-     *
-     * @var Registry $registry
-     */
-    protected $registry;
-    /**
-     * Image
-     *
-     * @var Image $image
-     */
-    protected $image;
-    /**
-     * Review renderer interface
-     *
-     * @var ReviewRendererInterface $reviewRenderer
-     */
-    protected $reviewRenderer;
-    /**
-     * Summary factory
-     *
-     * @var SummaryFactory $reviewSummaryFactory
-     */
-    protected $reviewSummaryFactory;
-    /**
-     * Config
-     *
-     * @var MicrodataConfig $config
-     */
-    protected $config;
-
-    /**
      * Product constructor.
      *
      * @param MicrodataConfig         $config
@@ -89,25 +46,17 @@ class Product extends Template
      * @param mixed[]                 $data
      */
     public function __construct(
-        MicrodataConfig $config,
-        StoreManagerInterface $storeManager,
-        Json $serialize,
-        Registry $registry,
-        Image $image,
-        ReviewRendererInterface $reviewRenderer,
-        SummaryFactory $reviewSummaryFactory,
+        protected MicrodataConfig $config,
+        protected StoreManagerInterface $storeManager,
+        protected Json $serialize,
+        protected Registry $registry,
+        protected Image $image,
+        protected ReviewRendererInterface $reviewRenderer,
+        protected SummaryFactory $reviewSummaryFactory,
         Context $context,
         array $data = []
     ) {
         parent::__construct($context, $data);
-
-        $this->serialize            = $serialize;
-        $this->storeManager         = $storeManager;
-        $this->registry             = $registry;
-        $this->image                = $image;
-        $this->reviewRenderer       = $reviewRenderer;
-        $this->reviewSummaryFactory = $reviewSummaryFactory;
-        $this->config = $config;
     }
 
     /**

@@ -23,19 +23,6 @@ use Web200\Seo\Api\Data\AdapterInterface;
 class TwitterCard extends Template implements SeoBlockInterface
 {
     /**
-     * Twitter card config
-     *
-     * @var TwitterCardConfig $config
-     */
-    protected $config;
-    /**
-     * Adapter interface
-     *
-     * @var AdapterInterface $adapter
-     */
-    protected $adapter;
-
-    /**
      * TwitterCard constructor.
      *
      * @param TwitterCardConfig $config
@@ -44,15 +31,12 @@ class TwitterCard extends Template implements SeoBlockInterface
      * @param mixed[]           $data
      */
     public function __construct(
-        TwitterCardConfig $config,
+        protected TwitterCardConfig $config,
         Context $context,
-        AdapterInterface $adapter,
+        protected AdapterInterface $adapter,
         array $data = []
     ) {
         parent::__construct($context, $data);
-
-        $this->adapter = $adapter;
-        $this->config  = $config;
     }
 
     /**

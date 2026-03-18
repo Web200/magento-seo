@@ -23,25 +23,6 @@ use Web200\Seo\Provider\MetaRobotsConfig;
 class Product
 {
     /**
-     * Page config
-     *
-     * @var PageConfig $pageConfig
-     */
-    protected $pageConfig;
-    /**
-     * Registry
-     *
-     * @var Registry $registry
-     */
-    protected $registry;
-    /**
-     * Meta robots config
-     *
-     * @var MetaRobotsConfig $metaRobotsConfig
-     */
-    protected $metaRobotsConfig;
-
-    /**
      * Product constructor.
      *
      * @param PageConfig       $pageConfig
@@ -49,13 +30,10 @@ class Product
      * @param Registry         $registry
      */
     public function __construct(
-        PageConfig $pageConfig,
-        MetaRobotsConfig $metaRobotsConfig,
-        Registry $registry
+        protected PageConfig $pageConfig,
+        protected MetaRobotsConfig $metaRobotsConfig,
+        protected Registry $registry
     ) {
-        $this->pageConfig       = $pageConfig;
-        $this->registry         = $registry;
-        $this->metaRobotsConfig = $metaRobotsConfig;
     }
 
     /**

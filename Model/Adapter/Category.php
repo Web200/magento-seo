@@ -29,24 +29,6 @@ class Category implements AdapterInterface
      * @var string[] $messageAttributes
      */
     protected $messageAttributes = ['meta_description', 'description'];
-    /**
-     * Registry
-     *
-     * @var Registry $registry
-     */
-    protected $registry;
-    /**
-     * Property interface
-     *
-     * @var PropertyInterface $property
-     */
-    protected $property;
-    /**
-     * Block parser
-     *
-     * @var BlockParser $blockParser
-     */
-    protected $blockParser;
 
     /**
      * Category constructor.
@@ -56,13 +38,10 @@ class Category implements AdapterInterface
      * @param Registry          $registry
      */
     public function __construct(
-        PropertyInterface $property,
-        BlockParser $blockParser,
-        Registry $registry
+        protected PropertyInterface $property,
+        protected BlockParser $blockParser,
+        protected Registry $registry
     ) {
-        $this->registry    = $registry;
-        $this->property    = $property;
-        $this->blockParser = $blockParser;
     }
 
     /**

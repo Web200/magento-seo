@@ -19,30 +19,15 @@ use Web200\Seo\Api\Data\PropertyInterface;
 class Adapter implements AdapterInterface
 {
     /**
-     * Adapters
-     *
-     * @var string[] $adapters
-     */
-    protected $adapters;
-    /**
-     * Property interface
-     *
-     * @var PropertyInterface $property
-     */
-    protected $property;
-
-    /**
      * Adapter constructor.
      *
      * @param PropertyInterface $property
      * @param mixed[]           $adapters
      */
     public function __construct(
-        PropertyInterface $property,
-        array $adapters
+        protected PropertyInterface $property,
+        protected array $adapters
     ) {
-        $this->adapters = $adapters;
-        $this->property = $property;
     }
 
     /**

@@ -22,13 +22,6 @@ use Web200\Seo\Model\Property;
 class OpenGraph extends Template implements SeoBlockInterface
 {
     /**
-     * Adapter interface
-     *
-     * @var AdapterInterface $adapter
-     */
-    private $adapter;
-
-    /**
      * OpenGraph constructor.
      *
      * @param Context          $context
@@ -37,12 +30,10 @@ class OpenGraph extends Template implements SeoBlockInterface
      */
     public function __construct(
         Context $context,
-        AdapterInterface $adapter,
+        private AdapterInterface $adapter,
         array $data = []
     ) {
         parent::__construct($context, $data);
-
-        $this->adapter = $adapter;
     }
 
     /**

@@ -25,13 +25,6 @@ use Web200\Seo\Service\HrefLang\AlternativeUrlService;
 class HrefLang extends Template
 {
     /**
-     * Alternative url service
-     *
-     * @var AlternativeUrlService $alternativeUrlService
-     */
-    protected $alternativeUrlService;
-
-    /**
      * HrefLang constructor.
      *
      * @param Context               $context
@@ -40,12 +33,10 @@ class HrefLang extends Template
      */
     public function __construct(
         Context $context,
-        AlternativeUrlService $alternativeUrlService,
+        protected AlternativeUrlService $alternativeUrlService,
         array $data = []
     ) {
         parent::__construct($context, $data);
-
-        $this->alternativeUrlService = $alternativeUrlService;
     }
 
     /**

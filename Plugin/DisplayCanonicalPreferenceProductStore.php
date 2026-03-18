@@ -27,49 +27,6 @@ use Web200\Seo\Service\HrefLang\AlternativeUrlService;
 class DisplayCanonicalPreferenceProductStore
 {
     /**
-     * Page assets
-     *
-     * @var GroupedCollection $pageAssets
-     */
-    protected $pageAssets;
-    /**
-     * Product repository
-     *
-     * @var ProductRepositoryInterface $productRepository
-     */
-    protected $productRepository;
-    /**
-     * Store manager
-     *
-     * @var StoreManagerInterface $storeManager
-     */
-    protected $storeManager;
-    /**
-     * Alternative url service
-     *
-     * @var AlternativeUrlService $alternativeUrlService
-     */
-    protected $alternativeUrlService;
-    /**
-     * Canonical config
-     *
-     * @var CanonicalConfig $canonicalConfig
-     */
-    protected $canonicalConfig;
-    /**
-     * Asset repo
-     *
-     * @var Repository $assetRepo
-     */
-    protected $assetRepo;
-    /**
-     * Store repository
-     *
-     * @var StoreRepositoryInterface $storeRepository
-     */
-    protected $storeRepository;
-
-    /**
      * @param StoreRepositoryInterface   $storeRepository
      * @param StoreManagerInterface      $storeManager
      * @param ProductRepositoryInterface $productRepository
@@ -79,21 +36,14 @@ class DisplayCanonicalPreferenceProductStore
      * @param GroupedCollection          $pageAssets
      */
     public function __construct(
-        StoreRepositoryInterface $storeRepository,
-        StoreManagerInterface $storeManager,
-        ProductRepositoryInterface $productRepository,
-        AlternativeUrlService $alternativeUrlService,
-        CanonicalConfig $canonicalConfig,
-        Repository $assetRepo,
-        GroupedCollection $pageAssets
+        protected StoreRepositoryInterface $storeRepository,
+        protected StoreManagerInterface $storeManager,
+        protected ProductRepositoryInterface $productRepository,
+        protected AlternativeUrlService $alternativeUrlService,
+        protected CanonicalConfig $canonicalConfig,
+        protected Repository $assetRepo,
+        protected GroupedCollection $pageAssets
     ) {
-        $this->pageAssets            = $pageAssets;
-        $this->productRepository     = $productRepository;
-        $this->storeManager          = $storeManager;
-        $this->alternativeUrlService = $alternativeUrlService;
-        $this->canonicalConfig       = $canonicalConfig;
-        $this->assetRepo             = $assetRepo;
-        $this->storeRepository       = $storeRepository;
     }
 
     /**

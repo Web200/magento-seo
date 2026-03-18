@@ -22,25 +22,6 @@ use Web200\Seo\Provider\MetaRobotsConfig;
 class Category
 {
     /**
-     * Page config
-     *
-     * @var PageConfig $pageConfig
-     */
-    protected $pageConfig;
-    /**
-     * Meta robots config
-     *
-     * @var MetaRobotsConfig $metaRobotsConfig
-     */
-    protected $metaRobotsConfig;
-    /**
-     * Request
-     *
-     * @var RequestInterface $request
-     */
-    protected $request;
-
-    /**
      * Category constructor.
      *
      * @param RequestInterface $request
@@ -48,13 +29,10 @@ class Category
      * @param MetaRobotsConfig $metaRobotsConfig
      */
     public function __construct(
-        RequestInterface $request,
-        PageConfig $pageConfig,
-        MetaRobotsConfig $metaRobotsConfig
+        protected RequestInterface $request,
+        protected PageConfig $pageConfig,
+        protected MetaRobotsConfig $metaRobotsConfig
     ) {
-        $this->pageConfig       = $pageConfig;
-        $this->metaRobotsConfig = $metaRobotsConfig;
-        $this->request          = $request;
     }
 
     /**

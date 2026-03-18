@@ -22,31 +22,6 @@ use Web200\Seo\Api\ProductUrlRetrieverInterface;
 class AlternativeUrlService
 {
     /**
-     * Cms page url retriver interface
-     *
-     * @var CmsPageUrlRetrieverInterface $cmsPageUrlRetriever
-     */
-    protected $cmsPageUrlRetriever;
-    /**
-     * Category url retriver interface
-     *
-     * @var CategoryUrlRetrieverInterface $categoryUrlRetriever
-     */
-    protected $categoryUrlRetriever;
-    /**
-     * Product url retriver interface
-     *
-     * @var ProductUrlRetrieverInterface $productUrlRetriever
-     */
-    protected $productUrlRetriever;
-    /**
-     * Http request
-     *
-     * @var HttpRequest $request
-     */
-    protected $request;
-
-    /**
      * AlternativeUrlService constructor.
      *
      * @param CmsPageUrlRetrieverInterface  $cmsPageUrlRetriever
@@ -55,15 +30,11 @@ class AlternativeUrlService
      * @param HttpRequest                   $request
      */
     public function __construct(
-        CmsPageUrlRetrieverInterface $cmsPageUrlRetriever,
-        CategoryUrlRetrieverInterface $categoryUrlRetriever,
-        ProductUrlRetrieverInterface $productUrlRetriever,
-        HttpRequest $request
+        protected CmsPageUrlRetrieverInterface $cmsPageUrlRetriever,
+        protected CategoryUrlRetrieverInterface $categoryUrlRetriever,
+        protected ProductUrlRetrieverInterface $productUrlRetriever,
+        protected HttpRequest $request
     ) {
-        $this->cmsPageUrlRetriever  = $cmsPageUrlRetriever;
-        $this->categoryUrlRetriever = $categoryUrlRetriever;
-        $this->productUrlRetriever  = $productUrlRetriever;
-        $this->request              = $request;
     }
 
     /**

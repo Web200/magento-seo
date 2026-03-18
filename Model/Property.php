@@ -116,7 +116,8 @@ final class Property implements PropertyInterface
      */
     public function setImage(string $image)
     {
-        $extension = strtolower(pathinfo($image, PATHINFO_EXTENSION)); //@codingStandardsIgnoreLine
+        $image = parse_url($image, PHP_URL_PATH);
+        $extension = strtolower(pathinfo($image, PATHINFO_EXTENSION));
         if (in_array($extension, $this->validImageFormats)) {
             return $this->addProperty('image', $image);
         }

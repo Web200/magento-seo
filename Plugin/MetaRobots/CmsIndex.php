@@ -26,37 +26,6 @@ use Web200\Seo\Provider\MetaRobotsConfig;
 class CmsIndex
 {
     /**
-     * Page config
-     *
-     * @var PageConfig $pageConfig
-     */
-    protected $pageConfig;
-    /**
-     * Page Repository
-     *
-     * @var PageRepository $pageRepository
-     */
-    protected $pageRepository;
-    /**
-     * Request Interface
-     *
-     * @var RequestInterface $request
-     */
-    protected $request;
-    /**
-     * Meta robots config
-     *
-     * @var MetaRobotsConfig $metaRobotsConfig
-     */
-    protected $metaRobotsConfig;
-    /**
-     * Scope config interface
-     *
-     * @var ScopeConfigInterface $scopeConfig
-     */
-    protected $scopeConfig;
-
-    /**
      * Cms Constructor
      *
      * @param PageConfig           $pageConfig
@@ -66,17 +35,12 @@ class CmsIndex
      * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
-        PageConfig $pageConfig,
-        PageRepository $pageRepository,
-        RequestInterface $request,
-        MetaRobotsConfig $metaRobotsConfig,
-        ScopeConfigInterface $scopeConfig
+        protected PageConfig $pageConfig,
+        protected PageRepository $pageRepository,
+        protected RequestInterface $request,
+        protected MetaRobotsConfig $metaRobotsConfig,
+        protected ScopeConfigInterface $scopeConfig
     ) {
-        $this->pageConfig       = $pageConfig;
-        $this->pageRepository = $pageRepository;
-        $this->request        = $request;
-        $this->metaRobotsConfig = $metaRobotsConfig;
-        $this->scopeConfig = $scopeConfig;
     }
     /**
      * @param Index $subject

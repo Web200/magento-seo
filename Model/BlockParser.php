@@ -20,21 +20,13 @@ use Magento\Cms\Api\Data\BlockInterface;
 class BlockParser
 {
     /**
-     * Block repository interface
-     *
-     * @var BlockRepositoryInterface $blockRepository
-     */
-    protected $blockRepository;
-
-    /**
      * BlockParser constructor.
      *
      * @param BlockRepositoryInterface $blockRepository
      */
     public function __construct(
-        BlockRepositoryInterface $blockRepository
+        protected BlockRepositoryInterface $blockRepository
     ) {
-        $this->blockRepository = $blockRepository;
     }
 
     /**

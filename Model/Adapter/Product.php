@@ -33,24 +33,6 @@ class Product implements AdapterInterface
         'short_description',
         'description'
     ];
-    /**
-     * Property interface
-     *
-     * @var PropertyInterface $property
-     */
-    protected $property;
-    /**
-     * Registry
-     *
-     * @var Registry $registry
-     */
-    protected $registry;
-    /**
-     * Image builder
-     *
-     * @var ImageBuilder $imageBuilder
-     */
-    protected $imageBuilder;
 
     /**
      * Product constructor.
@@ -60,13 +42,10 @@ class Product implements AdapterInterface
      * @param Registry          $registry
      */
     public function __construct(
-        PropertyInterface $property,
-        ImageBuilder $imageBuilder,
-        Registry $registry
+        protected PropertyInterface $property,
+        protected ImageBuilder $imageBuilder,
+        protected Registry $registry
     ) {
-        $this->property     = $property;
-        $this->registry     = $registry;
-        $this->imageBuilder = $imageBuilder;
     }
 
     /**

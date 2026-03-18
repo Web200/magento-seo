@@ -26,25 +26,6 @@ use Web200\Seo\Provider\SitemapConfig;
 class Sitemap extends Template
 {
     /**
-     * Category helper
-     *
-     * @var CategoryHelper $categoryHelper
-     */
-    protected $categoryHelper;
-    /**
-     * Category flat config
-     *
-     * @var State $categoryFlatConfig
-     */
-    protected $categoryFlatConfig;
-    /**
-     * Sitemap config
-     *
-     * @var SitemapConfig $sitemapConfig
-     */
-    protected $sitemapConfig;
-
-    /**
      * Sitemap constructor.
      *
      * @param Context        $context
@@ -55,16 +36,12 @@ class Sitemap extends Template
      */
     public function __construct(
         Context $context,
-        CategoryHelper $categoryHelper,
-        State $categoryFlatState,
-        SitemapConfig $sitemapConfig,
+        protected CategoryHelper $categoryHelper,
+        protected State $categoryFlatConfig,
+        protected SitemapConfig $sitemapConfig,
         array $data = []
     ) {
         parent::__construct($context, $data);
-
-        $this->categoryHelper     = $categoryHelper;
-        $this->categoryFlatConfig = $categoryFlatState;
-        $this->sitemapConfig      = $sitemapConfig;
     }
 
     /**

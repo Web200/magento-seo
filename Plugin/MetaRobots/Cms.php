@@ -26,31 +26,6 @@ use Magento\Cms\Model\PageRepository;
 class Cms
 {
     /**
-     * Page config
-     *
-     * @var PageConfig $pageConfig
-     */
-    protected $pageConfig;
-    /**
-     * Page Repository
-     *
-     * @var PageRepository $pageRepository
-     */
-    protected $pageRepository;
-    /**
-     * Request Interface
-     *
-     * @var RequestInterface $request
-     */
-    protected $request;
-    /**
-     * Meta robots config
-     *
-     * @var MetaRobotsConfig $metaRobotsConfig
-     */
-    protected $metaRobotsConfig;
-
-    /**
      * Cms Constructor
      *
      * @param PageConfig       $pageConfig
@@ -59,15 +34,11 @@ class Cms
      * @param MetaRobotsConfig $metaRobotsConfig
      */
     public function __construct(
-        PageConfig $pageConfig,
-        PageRepository $pageRepository,
-        RequestInterface $request,
-        MetaRobotsConfig $metaRobotsConfig
+        protected PageConfig $pageConfig,
+        protected PageRepository $pageRepository,
+        protected RequestInterface $request,
+        protected MetaRobotsConfig $metaRobotsConfig
     ) {
-        $this->pageConfig       = $pageConfig;
-        $this->pageRepository = $pageRepository;
-        $this->request        = $request;
-        $this->metaRobotsConfig = $metaRobotsConfig;
     }
 
     /**

@@ -7,15 +7,9 @@ use Magento\Framework\View\Page\Config as Subject;
 
 class PageConfigPlugin
 {
-    /**
-     * @var ScopeConfigInterface
-     */
-    private $scopeConfig;
-
     public function __construct(
-        ScopeConfigInterface $scopeConfig
+        private ScopeConfigInterface $scopeConfig
     ) {
-        $this->scopeConfig = $scopeConfig;
     }
 
     /**
