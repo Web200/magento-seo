@@ -48,7 +48,7 @@ class Breadcrumbs extends BaseBreadcrumbs
         ProductRepositoryInterface $productRepository,
         Template\Context $context,
         array $data = [],
-        Json $serializer = null
+        ?Json $serializer = null
     ) {
         parent::__construct($context, $data, $serializer);
 
